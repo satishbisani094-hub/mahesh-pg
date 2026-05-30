@@ -369,7 +369,7 @@
         <div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:900;margin-bottom:4px">Basic</div>
         <div style="margin-bottom:24px"><span class="price-num" style="color:var(--blue)">₹8,000</span><span class="price-per">/month</span></div>
         <div style="margin-bottom:28px">
-          <div class="price-feature" style="border-bottom:1px solid var(--border)"><span class="check" style="color:var(--blue)">✓</span> Shared AC Room</div>
+          <div class="price-feature" style="border-bottom:1px solid var(--border)"><span class="check" style="color:var(--blue)">✓</span> Shared Room</div>
           <div class="price-feature" style="border-bottom:1px solid var(--border)"><span class="check" style="color:var(--blue)">✓</span> Free Wi-Fi</div>
           <div class="price-feature" style="border-bottom:1px solid var(--border)"><span class="check" style="color:var(--blue)">✓</span> CCTV Security</div>
           <div class="price-feature" style="border-bottom:1px solid var(--border)"><span class="check" style="color:var(--blue)">✓</span> Power Backup</div>
@@ -384,13 +384,12 @@
         <div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:#fff;margin-bottom:4px">Standard</div>
         <div style="margin-bottom:24px"><span class="price-num" style="color:#fff">₹11,000</span><span style="color:rgba(255,255,255,0.65);font-size:14px">/month</span></div>
         <div style="margin-bottom:28px">
-          <div class="price-feature" style="border-bottom:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.9)"><span class="check" style="color:#FB923C">✓</span> Shared AC Room</div>
+          <div class="price-feature" style="border-bottom:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.9)"><span class="check" style="color:#FB923C">✓</span> Shared Room</div>
           <div class="price-feature" style="border-bottom:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.9)"><span class="check" style="color:#FB923C">✓</span> Free Wi-Fi</div>
           <div class="price-feature" style="border-bottom:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.9)"><span class="check" style="color:#FB923C">✓</span> CCTV Security</div>
           <div class="price-feature" style="border-bottom:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.9)"><span class="check" style="color:#FB923C">✓</span> Power Backup</div>
           <div class="price-feature" style="border-bottom:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.9)"><span class="check" style="color:#FB923C">✓</span> Attached Washroom</div>
-          <div class="price-feature" style="border-bottom:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.9)"><span class="check" style="color:#FB923C">✓</span> Daily Housekeeping</div>
-          <div class="price-feature" style="color:rgba(255,255,255,0.9)"><span class="check" style="color:#FB923C">✓</span> Laundry Service</div>
+          <div class="price-feature" style="color:rgba(255,255,255,0.9)"><span class="check" style="color:#FB923C">✓</span> Housekeeping</div>
         </div>
         <button onclick="openBook()" style="width:100%;background:linear-gradient(135deg,#F97316,#FB923C);border:none;color:#fff;padding:13px 0;border-radius:12px;font-weight:800;font-size:15px;box-shadow:0 6px 20px rgba(249,115,22,0.4)">Book Now →</button>
       </div>
@@ -403,11 +402,9 @@
           <div class="price-feature" style="border-bottom:1px solid var(--border)"><span class="check" style="color:var(--blue)">✓</span> Private AC Room</div>
           <div class="price-feature" style="border-bottom:1px solid var(--border)"><span class="check" style="color:var(--blue)">✓</span> Free Wi-Fi</div>
           <div class="price-feature" style="border-bottom:1px solid var(--border)"><span class="check" style="color:var(--blue)">✓</span> CCTV Security</div>
+          <div class="price-feature" style="border-bottom:1px solid var(--border)"><span class="check" style="color:var(--blue)">✓</span> Power Backup</div>
           <div class="price-feature" style="border-bottom:1px solid var(--border)"><span class="check" style="color:var(--blue)">✓</span> Private Washroom</div>
-          <div class="price-feature" style="border-bottom:1px solid var(--border)"><span class="check" style="color:var(--blue)">✓</span> Daily Housekeeping</div>
-          <div class="price-feature" style="border-bottom:1px solid var(--border)"><span class="check" style="color:var(--blue)">✓</span> Laundry Service</div>
-          <div class="price-feature" style="border-bottom:1px solid var(--border)"><span class="check" style="color:var(--blue)">✓</span> Healthy Meals</div>
-          <div class="price-feature"><span class="check" style="color:var(--blue)">✓</span> Study Room Access</div>
+          <div class="price-feature"><span class="check" style="color:var(--blue)">✓</span> Housekeeping</div>
         </div>
         <button onclick="openBook()" style="width:100%;background:linear-gradient(135deg,var(--blue),var(--blue-light));border:none;color:#fff;padding:13px 0;border-radius:12px;font-weight:800;font-size:15px">Book Now →</button>
       </div>
@@ -603,9 +600,9 @@
   const WEB3FORMS_ACCESS_KEY = "";
 
   const ROOMS = [
-    { type: "Single Sharing", price: 19000, accent: "#1A56DB", img: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600&q=80", features: ["Private Space", "Study Table", "Wardrobe", "AC"], popular: false },
-    { type: "Double Sharing", price: 11000, accent: "#F97316", img: "https://images.unsplash.com/photo-1540518614846-7eded433c457?w=600&q=80", features: ["Shared Room", "2 Study Tables", "2 Wardrobes", "AC"], popular: true },
-    { type: "Triple Sharing", price: 8000, accent: "#16A34A", img: "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=600&q=80", features: ["Shared Room", "3 Study Tables", "Common Wardrobe", "AC"], popular: false },
+    { type: "Single Sharing", price: 19000, accent: "#1A56DB", img: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600&q=80", features: ["Private Space", "Study Table with Chair", "2 Wardrobe", "TV"], popular: false },
+    { type: "Double Sharing", price: 11000, accent: "#F97316", img: "https://images.unsplash.com/photo-1540518614846-7eded433c457?w=600&q=80", features: ["Shared Room", "Study Table with Chair", "2 Wardrobes", "TV"], popular: true },
+    { type: "Triple Sharing", price: 8000, accent: "#16A34A", img: "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=600&q=80", features: ["Shared Room", "Study Table with Chair", "3 wardrobe", "TV"], popular: false },
   ];
 
   const FAQS = [

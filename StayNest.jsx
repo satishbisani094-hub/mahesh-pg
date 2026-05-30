@@ -43,9 +43,9 @@ const FadeIn = ({ children, delay = 0, direction = "up", className = "" }) => {
 const NAV_LINKS = ["Home", "About", "Rooms", "Amenities", "Pricing", "Location", "Contact", "FAQ"];
 
 const ROOMS = [
-  { type: "Single Sharing", emoji: "🛏️", price: 19000, features: ["Private Space", "Study Table", "Wardrobe", "AC"], color: "#EFF6FF", accent: "#1A56DB", img: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600&q=80" },
-  { type: "Double Sharing", emoji: "🛏️🛏️", price: 11000, features: ["Shared Room", "2 Study Tables", "2 Wardrobes", "AC"], color: "#FFF7ED", accent: "#F97316", img: "https://images.unsplash.com/photo-1540518614846-7eded433c457?w=600&q=80", popular: true },
-  { type: "Triple Sharing", emoji: "🛏️🛏️🛏️", price: 8000, features: ["Shared Room", "3 Study Tables", "Common Wardrobe", "AC"], color: "#F0FDF4", accent: "#16A34A", img: "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=600&q=80" },
+  { type: "Single Sharing", emoji: "🛏️", price: 19000, features: ["Private Space", "Study Table with Chair", "2 Wardrobe", "TV"], color: "#EFF6FF", accent: "#1A56DB", img: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600&q=80" },
+  { type: "Double Sharing", emoji: "🛏️🛏️", price: 11000, features: ["Shared Room", "Study Table with Chair", "2 Wardrobes", "TV"], color: "#FFF7ED", accent: "#F97316", img: "https://images.unsplash.com/photo-1540518614846-7eded433c457?w=600&q=80", popular: true },
+  { type: "Triple Sharing", emoji: "🛏️🛏️🛏️", price: 8000, features: ["Shared Room", "Study Table with Chair", "3 wardrobe", "TV"], color: "#F0FDF4", accent: "#16A34A", img: "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=600&q=80" },
 ];
 
 const AMENITIES = [
@@ -60,9 +60,9 @@ const AMENITIES = [
 ];
 
 const PRICING = [
-  { plan: "Basic", price: 8000, type: "Triple Sharing", features: ["Shared AC Room", "Free Wi-Fi", "CCTV Security", "Power Backup", "Common Washroom"], popular: false },
-  { plan: "Standard", price: 11000, type: "Double Sharing", features: ["Shared AC Room", "Free Wi-Fi", "CCTV Security", "Power Backup", "Attached Washroom", "Daily Housekeeping", "Laundry Service"], popular: true },
-  { plan: "Premium", price: 19000, type: "Single Sharing", features: ["Private AC Room", "Free Wi-Fi", "CCTV Security", "Power Backup", "Private Washroom", "Daily Housekeeping", "Laundry Service", "Healthy Meals", "Study Room Access"], popular: false },
+  { plan: "Basic", price: 8000, type: "Triple Sharing", features: ["Shared Room", "Free Wi-Fi", "CCTV Security", "Power Backup", "Common Washroom"], popular: false },
+  { plan: "Standard", price: 11000, type: "Double Sharing", features: ["Shared Room", "Free Wi-Fi", "CCTV Security", "Power Backup", "Attached Washroom", "Housekeeping"], popular: true },
+  { plan: "Premium", price: 19000, type: "Single Sharing", features: ["Private AC Room", "Free Wi-Fi", "CCTV Security", "Power Backup", "Private Washroom", "Housekeeping"], popular: false },
 ];
 
 const FAQS = [
@@ -279,7 +279,7 @@ export default function JayaCoLiving() {
 
         {/* Stats bar */}
         <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, zIndex: 2, background: "rgba(255,255,255,0.1)", backdropFilter: "blur(20px)", borderTop: "1px solid rgba(255,255,255,0.2)", display: "flex", justifyContent: "center", gap: "clamp(20px, 6vw, 80px)", padding: "16px 5%" }}>
-          {[["500+", "Happy Residents"], ["4.9★", "Average Rating"], ["2+", "Years Experience"], ["24/7", "Support"]].map(([num, label]) => (
+          {[["50+", "Happy Residents"], ["4.9★", "Average Rating"], ["2+", "Years Experience"], ["24/7", "Support"]].map(([num, label]) => (
             <div key={label} style={{ textAlign: "center" }}>
               <div style={{ color: COLORS.orange, fontWeight: 900, fontSize: "clamp(1.1rem, 2.5vw, 1.5rem)", fontFamily: "'Playfair Display', serif" }}>{num}</div>
               <div style={{ color: "rgba(255,255,255,0.75)", fontSize: "clamp(10px, 1.5vw, 13px)", fontWeight: 600 }}>{label}</div>
@@ -295,7 +295,7 @@ export default function JayaCoLiving() {
             <div style={{ position: "relative" }}>
               <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80" alt="Jaya Co Living building" style={{ width: "100%", borderRadius: 20, objectFit: "cover", height: 400 }} />
               <div style={{ position: "absolute", bottom: -20, right: -20, background: `linear-gradient(135deg, ${COLORS.orange}, ${COLORS.orangeLight})`, borderRadius: 16, padding: "20px 24px", boxShadow: "0 8px 32px rgba(249,115,22,0.4)" }}>
-                <div style={{ color: "#fff", fontSize: 28, fontWeight: 900, fontFamily: "'Playfair Display', serif" }}>500+</div>
+                <div style={{ color: "#fff", fontSize: 28, fontWeight: 900, fontFamily: "'Playfair Display', serif" }}>50+</div>
                 <div style={{ color: "rgba(255,255,255,0.9)", fontSize: 13, fontWeight: 600 }}>Happy Residents</div>
               </div>
               <div style={{ position: "absolute", top: -16, left: -16, background: cardBg, border: `2px solid ${COLORS.blue}`, borderRadius: 16, padding: "12px 18px", boxShadow: "0 4px 20px rgba(0,0,0,0.12)" }}>
@@ -309,7 +309,7 @@ export default function JayaCoLiving() {
               <span style={{ color: COLORS.orange, fontWeight: 700, fontSize: 13, letterSpacing: 2, textTransform: "uppercase" }}>About Jaya Co Living</span>
               <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)", margin: "12px 0 20px", lineHeight: 1.2 }}>Your Home Away<br />From <span style={{ color: COLORS.blue }}>Home</span></h2>
               <p style={{ color: mutedText, lineHeight: 1.8, marginBottom: 20, fontSize: 15 }}>
-                Jaya Co Living was founded with a simple mission: to provide a safe, comfortable, and affordable living space for students and working professionals. With over 2 years of excellence, we've become Bangalore's most trusted PG accommodation.
+                Jaya Co Living was founded with a simple mission: to provide a safe, comfortable, and affordable living space for students and working professionals. With over 2+ years of excellence, we've become Bangalore's most trusted PG accommodation.
               </p>
               <p style={{ color: mutedText, lineHeight: 1.8, marginBottom: 28, fontSize: 15 }}>
                 We believe that where you live shapes who you become. That's why we go beyond just providing a roof — we foster a community of growth, safety, and warmth.
