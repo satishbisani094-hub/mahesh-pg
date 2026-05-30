@@ -151,12 +151,6 @@
     .price-feature { display: flex; align-items: center; gap: 10px; padding: 7px 0; font-size: 14px; }
     .check { font-weight: 700; }
 
-    /* TESTIMONIALS */
-    .testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; }
-    .testi-card { background: var(--card-bg); border: 1.5px solid var(--border); border-radius: 20px; padding: 26px 24px; transition: transform 0.3s, box-shadow 0.3s; }
-    .testi-card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(0,0,0,0.1); }
-    .avatar { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; color: var(--blue); }
-
     /* LOCATION */
     .location-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: start; }
     .map-card { background: var(--card-bg); border-radius: 20px; overflow: hidden; border: 1.5px solid var(--border); }
@@ -251,7 +245,6 @@
   <button class="mobile-menu-link" onclick="scrollToSection('rooms')">Rooms</button>
   <button class="mobile-menu-link" onclick="scrollToSection('amenities')">Amenities</button>
   <button class="mobile-menu-link" onclick="scrollToSection('pricing')">Pricing</button>
-  <button class="mobile-menu-link" onclick="scrollToSection('testimonials')">Testimonials</button>
   <button class="mobile-menu-link" onclick="scrollToSection('location')">Location</button>
   <button class="mobile-menu-link" onclick="scrollToSection('contact')">Contact</button>
   <button class="mobile-menu-link" onclick="scrollToSection('faq')">FAQ</button>
@@ -287,7 +280,7 @@
   <div class="stats-bar">
     <div><div class="stat-num">500+</div><div class="stat-label">Happy Residents</div></div>
     <div><div class="stat-num">4.9★</div><div class="stat-label">Average Rating</div></div>
-    <div><div class="stat-num">5+</div><div class="stat-label">Years Experience</div></div>
+    <div><div class="stat-num">2+</div><div class="stat-label">Years Experience</div></div>
     <div><div class="stat-num">24/7</div><div class="stat-label">Support</div></div>
   </div>
 </section>
@@ -310,7 +303,7 @@
       <div class="fade-in">
         <div class="section-label">About Jaya Co Living</div>
         <h2 class="section-title">Your Home Away From <span>Home</span></h2>
-        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:20px;font-size:15px">Jaya Co Living was founded with a simple mission: to provide a safe, comfortable, and affordable living space for students and working professionals. With over 5 years of excellence, we've become Bangalore's most trusted PG accommodation.</p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:20px;font-size:15px">Jaya Co Living was founded with a simple mission: to provide a safe, comfortable, and affordable living space for students and working professionals. With over 2 years of excellence, we've become Bangalore's most trusted PG accommodation.</p>
         <p style="color:var(--text-muted);line-height:1.8;margin-bottom:28px;font-size:15px">We believe that where you live shapes who you become. That's why we go beyond just providing a roof — we foster a community of growth, safety, and warmth.</p>
         <div class="feature-item">
           <div class="feature-icon">🛡️</div>
@@ -350,11 +343,11 @@
     </div>
     <div class="amenities-grid">
       <div class="amenity-card fade-in"><div class="amenity-icon">📶</div><div style="font-weight:800;font-size:15px;margin-bottom:6px">Free Wi-Fi</div><div style="color:var(--text-muted);font-size:13px">High-speed internet 24/7</div></div>
-      <div class="amenity-card fade-in" style="transition-delay:0.08s"><div class="amenity-icon">❄️</div><div style="font-weight:800;font-size:15px;margin-bottom:6px">AC Rooms</div><div style="color:var(--text-muted);font-size:13px">Climate-controlled comfort</div></div>
-      <div class="amenity-card fade-in" style="transition-delay:0.16s"><div class="amenity-icon">🧹</div><div style="font-weight:800;font-size:15px;margin-bottom:6px">Housekeeping</div><div style="color:var(--text-muted);font-size:13px">Daily cleaning service</div></div>
+      <div class="amenity-card fade-in" style="transition-delay:0.08s"><div class="amenity-icon">📺</div><div style="font-weight:800;font-size:15px;margin-bottom:6px">TV Entertainment</div><div style="color:var(--text-muted);font-size:13px">Enjoy your favorite shows</div></div>
+      <div class="amenity-card fade-in" style="transition-delay:0.16s"><div class="amenity-icon">🧹</div><div style="font-weight:800;font-size:15px;margin-bottom:6px">Housekeeping</div><div style="color:var(--text-muted);font-size:13px">Cleaning service</div></div>
       <div class="amenity-card fade-in" style="transition-delay:0.24s"><div class="amenity-icon">📷</div><div style="font-weight:800;font-size:15px;margin-bottom:6px">CCTV Security</div><div style="color:var(--text-muted);font-size:13px">24/7 surveillance</div></div>
       <div class="amenity-card fade-in" style="transition-delay:0.32s"><div class="amenity-icon">⚡</div><div style="font-weight:800;font-size:15px;margin-bottom:6px">Power Backup</div><div style="color:var(--text-muted);font-size:13px">Uninterrupted electricity</div></div>
-      <div class="amenity-card fade-in" style="transition-delay:0.4s"><div class="amenity-icon">👕</div><div style="font-weight:800;font-size:15px;margin-bottom:6px">Laundry</div><div style="color:var(--text-muted);font-size:13px">Wash & fold service</div></div>
+      <div class="amenity-card fade-in" style="transition-delay:0.4s"><div class="amenity-icon">🧺</div><div style="font-weight:800;font-size:15px;margin-bottom:6px">Washing Machine</div><div style="color:var(--text-muted);font-size:13px">Convenient self-service laundry</div></div>
       <div class="amenity-card fade-in" style="transition-delay:0.48s"><div class="amenity-icon">🍽️</div><div style="font-weight:800;font-size:15px;margin-bottom:6px">Healthy Food</div><div style="color:var(--text-muted);font-size:13px">Home-cooked meals</div></div>
       <div class="amenity-card fade-in" style="transition-delay:0.56s"><div class="amenity-icon">🚗</div><div style="font-weight:800;font-size:15px;margin-bottom:6px">Parking</div><div style="color:var(--text-muted);font-size:13px">Secure vehicle parking</div></div>
     </div>
@@ -417,50 +410,6 @@
           <div class="price-feature"><span class="check" style="color:var(--blue)">✓</span> Study Room Access</div>
         </div>
         <button onclick="openBook()" style="width:100%;background:linear-gradient(135deg,var(--blue),var(--blue-light));border:none;color:#fff;padding:13px 0;border-radius:12px;font-weight:800;font-size:15px">Book Now →</button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section id="testimonials">
-  <div class="section-inner">
-    <div class="section-header fade-in">
-      <div class="section-label">Testimonials</div>
-      <h2 class="section-title">What Our <span>Residents Say</span></h2>
-    </div>
-    <div class="testi-grid">
-      <div class="testi-card fade-in">
-        <div style="display:flex;gap:2px;margin-bottom:14px">⭐⭐⭐⭐⭐</div>
-        <p style="color:var(--text-muted);font-size:14px;line-height:1.75;margin-bottom:20px;font-style:italic">"Jaya Co Living has been my home for 2 years. The food is amazing, security is top-notch, and the staff is incredibly helpful. Best decision I made!"</p>
-        <div style="display:flex;align-items:center;gap:12px">
-          <div class="avatar" style="background:#DBEAFE">PS</div>
-          <div><div style="font-weight:800;font-size:14px">Priya Sharma</div><div style="color:var(--text-muted);font-size:12px">Medical Student</div></div>
-        </div>
-      </div>
-      <div class="testi-card fade-in">
-        <div style="display:flex;gap:2px;margin-bottom:14px">⭐⭐⭐⭐⭐</div>
-        <p style="color:var(--text-muted);font-size:14px;line-height:1.75;margin-bottom:20px;font-style:italic">"Perfect for working professionals. Fast WiFi, clean rooms, and the commute from here is super convenient. Highly recommend the premium plan!"</p>
-        <div style="display:flex;align-items:center;gap:12px">
-          <div class="avatar" style="background:#FEE2E2">RV</div>
-          <div><div style="font-weight:800;font-size:14px">Rahul Verma</div><div style="color:var(--text-muted);font-size:12px">Software Engineer</div></div>
-        </div>
-      </div>
-      <div class="testi-card fade-in">
-        <div style="display:flex;gap:2px;margin-bottom:14px">⭐⭐⭐⭐</div>
-        <p style="color:var(--text-muted);font-size:14px;line-height:1.75;margin-bottom:20px;font-style:italic">"Affordable, safe, and feels like home. The double sharing room gives enough personal space. The mess food is delicious and hygienic."</p>
-        <div style="display:flex;align-items:center;gap:12px">
-          <div class="avatar" style="background:#D1FAE5">AP</div>
-          <div><div style="font-weight:800;font-size:14px">Anjali Patel</div><div style="color:var(--text-muted);font-size:12px">MBA Student</div></div>
-        </div>
-      </div>
-      <div class="testi-card fade-in">
-        <div style="display:flex;gap:2px;margin-bottom:14px">⭐⭐⭐⭐⭐</div>
-        <p style="color:var(--text-muted);font-size:14px;line-height:1.75;margin-bottom:20px;font-style:italic">"I've stayed at many PGs but Jaya Co Living stands out. Maintenance is prompt, security is excellent, and the environment is peaceful for focused work."</p>
-        <div style="display:flex;align-items:center;gap:12px">
-          <div class="avatar" style="background:#FEF3C7">KR</div>
-          <div><div style="font-weight:800;font-size:14px">Karthik Reddy</div><div style="color:var(--text-muted);font-size:12px">IT Professional</div></div>
-        </div>
       </div>
     </div>
   </div>
@@ -575,7 +524,7 @@
         <span class="footer-link">Double Room</span>
         <span class="footer-link">Triple Room</span>
         <span class="footer-link">Food Service</span>
-        <span class="footer-link">Laundry</span>
+        <span class="footer-link">Washing Machine</span>
       </div>
       <div>
         <div style="font-weight:800;font-size:15px;margin-bottom:18px;color:#fff">Contact</div>
@@ -974,7 +923,6 @@
           'rooms': 'rooms',
           'amenities': 'amenities',
           'pricing': 'pricing',
-          'testimonials': 'testimonials',
           'location': 'location',
           'contact': 'contact',
           'faq': 'faq'

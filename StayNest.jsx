@@ -40,7 +40,7 @@ const FadeIn = ({ children, delay = 0, direction = "up", className = "" }) => {
   );
 };
 
-const NAV_LINKS = ["Home", "About", "Rooms", "Amenities", "Pricing", "Testimonials", "Location", "Contact", "FAQ"];
+const NAV_LINKS = ["Home", "About", "Rooms", "Amenities", "Pricing", "Location", "Contact", "FAQ"];
 
 const ROOMS = [
   { type: "Single Sharing", emoji: "🛏️", price: 19000, features: ["Private Space", "Study Table", "Wardrobe", "AC"], color: "#EFF6FF", accent: "#1A56DB", img: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600&q=80" },
@@ -50,11 +50,11 @@ const ROOMS = [
 
 const AMENITIES = [
   { icon: "📶", label: "Free Wi-Fi", desc: "High-speed internet 24/7" },
-  { icon: "❄️", label: "AC Rooms", desc: "Climate-controlled comfort" },
-  { icon: "🧹", label: "Housekeeping", desc: "Daily cleaning service" },
+  { icon: "📺", label: "TV Entertainment", desc: "Enjoy your favorite shows" },
+  { icon: "🧹", label: "Housekeeping", desc: "Cleaning service" },
   { icon: "📷", label: "CCTV Security", desc: "24/7 surveillance" },
   { icon: "⚡", label: "Power Backup", desc: "Uninterrupted electricity" },
-  { icon: "👕", label: "Laundry", desc: "Wash & fold service" },
+  { icon: "🧺", label: "Washing Machine", desc: "Convenient self-service laundry" },
   { icon: "🍽️", label: "Healthy Food", desc: "Home-cooked meals" },
   { icon: "🚗", label: "Parking", desc: "Secure vehicle parking" },
 ];
@@ -63,13 +63,6 @@ const PRICING = [
   { plan: "Basic", price: 8000, type: "Triple Sharing", features: ["Shared AC Room", "Free Wi-Fi", "CCTV Security", "Power Backup", "Common Washroom"], popular: false },
   { plan: "Standard", price: 11000, type: "Double Sharing", features: ["Shared AC Room", "Free Wi-Fi", "CCTV Security", "Power Backup", "Attached Washroom", "Daily Housekeeping", "Laundry Service"], popular: true },
   { plan: "Premium", price: 19000, type: "Single Sharing", features: ["Private AC Room", "Free Wi-Fi", "CCTV Security", "Power Backup", "Private Washroom", "Daily Housekeeping", "Laundry Service", "Healthy Meals", "Study Room Access"], popular: false },
-];
-
-const TESTIMONIALS = [
-  { name: "Priya Sharma", role: "Medical Student", review: "Jaya Co Living has been my home for 2 years. The food is amazing, security is top-notch, and the staff is incredibly helpful. Best decision I made!", rating: 5, avatar: "PS", color: "#DBEAFE" },
-  { name: "Rahul Verma", role: "Software Engineer", review: "Perfect for working professionals. Fast WiFi, clean rooms, and the commute from here is super convenient. Highly recommend the premium plan!", rating: 5, avatar: "RV", color: "#FEE2E2" },
-  { name: "Anjali Patel", role: "MBA Student", review: "Affordable, safe, and feels like home. The double sharing room gives enough personal space. The mess food is delicious and hygienic.", rating: 4, avatar: "AP", color: "#D1FAE5" },
-  { name: "Karthik Reddy", role: "IT Professional", review: "I've stayed at many PGs but Jaya Co Living stands out. Maintenance is prompt, security is excellent, and the environment is peaceful for focused work.", rating: 5, avatar: "KR", color: "#FEF3C7" },
 ];
 
 const FAQS = [
@@ -286,7 +279,7 @@ export default function JayaCoLiving() {
 
         {/* Stats bar */}
         <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, zIndex: 2, background: "rgba(255,255,255,0.1)", backdropFilter: "blur(20px)", borderTop: "1px solid rgba(255,255,255,0.2)", display: "flex", justifyContent: "center", gap: "clamp(20px, 6vw, 80px)", padding: "16px 5%" }}>
-          {[["500+", "Happy Residents"], ["4.9★", "Average Rating"], ["5+", "Years Experience"], ["24/7", "Support"]].map(([num, label]) => (
+          {[["500+", "Happy Residents"], ["4.9★", "Average Rating"], ["2+", "Years Experience"], ["24/7", "Support"]].map(([num, label]) => (
             <div key={label} style={{ textAlign: "center" }}>
               <div style={{ color: COLORS.orange, fontWeight: 900, fontSize: "clamp(1.1rem, 2.5vw, 1.5rem)", fontFamily: "'Playfair Display', serif" }}>{num}</div>
               <div style={{ color: "rgba(255,255,255,0.75)", fontSize: "clamp(10px, 1.5vw, 13px)", fontWeight: 600 }}>{label}</div>
@@ -316,7 +309,7 @@ export default function JayaCoLiving() {
               <span style={{ color: COLORS.orange, fontWeight: 700, fontSize: 13, letterSpacing: 2, textTransform: "uppercase" }}>About Jaya Co Living</span>
               <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)", margin: "12px 0 20px", lineHeight: 1.2 }}>Your Home Away<br />From <span style={{ color: COLORS.blue }}>Home</span></h2>
               <p style={{ color: mutedText, lineHeight: 1.8, marginBottom: 20, fontSize: 15 }}>
-                Jaya Co Living was founded with a simple mission: to provide a safe, comfortable, and affordable living space for students and working professionals. With over 5 years of excellence, we've become Bangalore's most trusted PG accommodation.
+                Jaya Co Living was founded with a simple mission: to provide a safe, comfortable, and affordable living space for students and working professionals. With over 2 years of excellence, we've become Bangalore's most trusted PG accommodation.
               </p>
               <p style={{ color: mutedText, lineHeight: 1.8, marginBottom: 28, fontSize: 15 }}>
                 We believe that where you live shapes who you become. That's why we go beyond just providing a roof — we foster a community of growth, safety, and warmth.
@@ -457,39 +450,6 @@ export default function JayaCoLiving() {
         </div>
       </section>
 
-      {/* TESTIMONIALS */}
-      <section id="testimonials" style={{ padding: "90px 5%" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <FadeIn>
-            <div style={{ textAlign: "center", marginBottom: 54 }}>
-              <span style={{ color: COLORS.orange, fontWeight: 700, fontSize: 13, letterSpacing: 2, textTransform: "uppercase" }}>Testimonials</span>
-              <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)", margin: "12px 0 14px" }}>What Our <span style={{ color: COLORS.blue }}>Residents Say</span></h2>
-            </div>
-          </FadeIn>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 22 }}>
-            {TESTIMONIALS.map((t, i) => (
-              <FadeIn key={t.name} delay={i * 100}>
-                <div style={{ background: cardBg, border: `1.5px solid ${borderC}`, borderRadius: 20, padding: "26px 24px", transition: "transform 0.3s, box-shadow 0.3s" }}
-                  onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-4px)"; e.currentTarget.style.boxShadow = "0 12px 36px rgba(0,0,0,0.1)"; }}
-                  onMouseLeave={e => { e.currentTarget.style.transform = "none"; e.currentTarget.style.boxShadow = "none"; }}>
-                  <div style={{ display: "flex", gap: 2, marginBottom: 14 }}>
-                    {Array.from({ length: t.rating }).map((_, j) => <span key={j} style={{ color: "#F59E0B", fontSize: 16 }}>⭐</span>)}
-                  </div>
-                  <p style={{ color: mutedText, fontSize: 14, lineHeight: 1.75, marginBottom: 20, fontStyle: "italic" }}>"{t.review}"</p>
-                  <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                    <div style={{ width: 44, height: 44, borderRadius: "50%", background: t.color, display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 800, fontSize: 14, color: COLORS.blue }}>{t.avatar}</div>
-                    <div>
-                      <div style={{ fontWeight: 800, fontSize: 14 }}>{t.name}</div>
-                      <div style={{ color: mutedText, fontSize: 12 }}>{t.role}</div>
-                    </div>
-                  </div>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* LOCATION */}
       <section id="location" style={{ padding: "90px 5%", background: dark ? "#0F172A" : COLORS.gray50 }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
@@ -618,7 +578,7 @@ export default function JayaCoLiving() {
             </div>
             {[
               ["Quick Links", ["Home", "About Us", "Rooms", "Amenities", "Pricing", "Contact"]],
-              ["Services", ["Single Room", "Double Room", "Triple Room", "Food Service", "Laundry"]],
+              ["Services", ["Single Room", "Double Room", "Triple Room", "Food Service", "Washing Machine"]],
               ["Contact", ["📞 +91 97000 53541", "📧 msrdy@7gmail.com", "📍 Whitefield, Bangalore", "⏰ 9AM - 9PM (Support)"]],
             ].map(([title, items]) => (
               <div key={title}>
