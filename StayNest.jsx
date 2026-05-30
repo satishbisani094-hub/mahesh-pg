@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { CONTACT_PHONE_DISPLAY, submitBooking } from "./bookingNotify.js";
 
 const COLORS = {
   navy: "#0B1F3A",
@@ -100,6 +101,9 @@ export default function JayaCoLiving() {
   const [searchQuery, setSearchQuery] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [bookSubmitted, setBookSubmitted] = useState(false);
+  const [bookSending, setBookSending] = useState(false);
+  const [bookEmailSent, setBookEmailSent] = useState(false);
+  const [bookForm, setBookForm] = useState({ name: "", phone: "", date: "", time: "", roomType: "" });
 
   const HERO_SLIDES = [
     { bg: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=1400&q=80", caption: "Modern Rooms" },
@@ -135,6 +139,56 @@ export default function JayaCoLiving() {
   );
 
   const handleFormChange = (e) => setFormData(p => ({ ...p, [e.target.name]: e.target.value }));
+
+  const handleBookChange = (e) => setBookForm(p => ({ ...p, [e.target.name]: e.target.value }));
+
+  const handleBookConfirm = async () => {
+    const { name, phone, date, time, roomType } = bookForm;
+    if (!name.trim()) {
+      alert("Please enter your full name.");
+      return;
+    }
+    if (!phone.trim() || phone.replace(/\D/g, "").length < 10) {
+      alert("Please enter a valid phone number.");
+      return;
+    }
+    if (!date) {
+      alert("Please select your preferred visit date.");
+      return;
+    }
+    if (!time) {
+      alert("Please select your preferred visit time.");
+      return;
+    }
+    if (!roomType || roomType === "Select Room Type") {
+      alert("Please select a room type.");
+      return;
+    }
+
+    const visitDate = new Date(`${date}T${time}`).toLocaleString("en-IN", {
+      dateStyle: "medium",
+      timeStyle: "short",
+    });
+
+    setBookSending(true);
+    const { emailSent } = await submitBooking({
+      name: name.trim(),
+      phone: phone.trim(),
+      visitDate,
+      roomType,
+    });
+    setBookSending(false);
+    setBookEmailSent(emailSent);
+    setBookSubmitted(true);
+  };
+
+  const closeBookModal = () => {
+    setBookOpen(false);
+    setBookSubmitted(false);
+    setBookEmailSent(false);
+    setBookSending(false);
+    setBookForm({ name: "", phone: "", date: "", time: "", roomType: "" });
+  };
 
   return (
     <div style={{ background: bg, color: text, fontFamily: "'Nunito', 'Segoe UI', sans-serif", minHeight: "100vh", transition: "background 0.3s, color 0.3s" }}>
@@ -618,27 +672,43 @@ export default function JayaCoLiving() {
 
       {/* BOOK VISIT MODAL */}
       {bookOpen && (
-        <Modal onClose={() => { setBookOpen(false); setBookSubmitted(false); }} title="Book a Visit" dark={dark} cardBg={cardBg} borderC={borderC} text={text} mutedText={mutedText}>
+        <Modal onClose={closeBookModal} title="Book a Visit" dark={dark} cardBg={cardBg} borderC={borderC} text={text} mutedText={mutedText}>
           {bookSubmitted ? (
             <div style={{ textAlign: "center", padding: "20px 0" }}>
               <div style={{ fontSize: 50, marginBottom: 12 }}>🎉</div>
               <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 20, marginBottom: 10, color: text }}>Visit Booked!</h3>
-              <p style={{ color: mutedText, fontSize: 14 }}>We'll confirm your slot via WhatsApp/call. See you soon!</p>
+              <p style={{ color: mutedText, fontSize: 14, lineHeight: 1.6 }}>
+                WhatsApp opened with your booking details.
+                <br /><br />
+                Please tap <strong>Send</strong> in WhatsApp so we receive it on <strong>{CONTACT_PHONE_DISPLAY}</strong>.
+                {bookEmailSent && (
+                  <>
+                    <br /><br />
+                    We also sent a copy to your email inbox.
+                  </>
+                )}
+              </p>
             </div>
           ) : (
             <>
               <p style={{ color: mutedText, marginBottom: 20, fontSize: 14 }}>Schedule a free property visit at your convenience!</p>
-              {[["Full Name", "text"], ["Phone Number", "tel"], ["Preferred Date", "date"], ["Preferred Time", "time"]].map(([ph, type]) => (
-                <input key={ph} type={type} placeholder={ph} style={{ width: "100%", marginBottom: 12, padding: "12px 14px", borderRadius: 10, border: `1.5px solid ${borderC}`, background: dark ? "#1E293B" : "#F9FAFB", color: text, fontSize: 14, outline: "none", boxSizing: "border-box", fontFamily: "inherit" }} />
-              ))}
-              <select style={{ width: "100%", marginBottom: 16, padding: "12px 14px", borderRadius: 10, border: `1.5px solid ${borderC}`, background: dark ? "#1E293B" : "#F9FAFB", color: text, fontSize: 14, outline: "none", fontFamily: "inherit" }}>
-                <option>Select Room Type</option>
+              <input name="name" type="text" placeholder="Full Name" value={bookForm.name} onChange={handleBookChange}
+                style={{ width: "100%", marginBottom: 12, padding: "12px 14px", borderRadius: 10, border: `1.5px solid ${borderC}`, background: dark ? "#1E293B" : "#F9FAFB", color: text, fontSize: 14, outline: "none", boxSizing: "border-box", fontFamily: "inherit" }} />
+              <input name="phone" type="tel" placeholder="Phone Number" value={bookForm.phone} onChange={handleBookChange}
+                style={{ width: "100%", marginBottom: 12, padding: "12px 14px", borderRadius: 10, border: `1.5px solid ${borderC}`, background: dark ? "#1E293B" : "#F9FAFB", color: text, fontSize: 14, outline: "none", boxSizing: "border-box", fontFamily: "inherit" }} />
+              <input name="date" type="date" placeholder="Preferred Date" value={bookForm.date} onChange={handleBookChange}
+                style={{ width: "100%", marginBottom: 12, padding: "12px 14px", borderRadius: 10, border: `1.5px solid ${borderC}`, background: dark ? "#1E293B" : "#F9FAFB", color: text, fontSize: 14, outline: "none", boxSizing: "border-box", fontFamily: "inherit" }} />
+              <input name="time" type="time" placeholder="Preferred Time" value={bookForm.time} onChange={handleBookChange}
+                style={{ width: "100%", marginBottom: 12, padding: "12px 14px", borderRadius: 10, border: `1.5px solid ${borderC}`, background: dark ? "#1E293B" : "#F9FAFB", color: text, fontSize: 14, outline: "none", boxSizing: "border-box", fontFamily: "inherit" }} />
+              <select name="roomType" value={bookForm.roomType} onChange={handleBookChange}
+                style={{ width: "100%", marginBottom: 16, padding: "12px 14px", borderRadius: 10, border: `1.5px solid ${borderC}`, background: dark ? "#1E293B" : "#F9FAFB", color: text, fontSize: 14, outline: "none", fontFamily: "inherit" }}>
+                <option value="">Select Room Type</option>
                 <option>Single Sharing - ₹19,000/mo</option>
                 <option>Double Sharing - ₹11,000/mo</option>
                 <option>Triple Sharing - ₹8,000/mo</option>
               </select>
-              <button onClick={() => setBookSubmitted(true)} style={{ width: "100%", background: `linear-gradient(135deg, ${COLORS.blue}, ${COLORS.blueLight})`, border: "none", color: "#fff", padding: "13px 0", borderRadius: 12, fontWeight: 800, fontSize: 15, cursor: "pointer" }}>
-                📅 Confirm Visit
+              <button onClick={handleBookConfirm} disabled={bookSending} style={{ width: "100%", background: `linear-gradient(135deg, ${COLORS.blue}, ${COLORS.blueLight})`, border: "none", color: "#fff", padding: "13px 0", borderRadius: 12, fontWeight: 800, fontSize: 15, cursor: bookSending ? "wait" : "pointer", opacity: bookSending ? 0.75 : 1 }}>
+                {bookSending ? "Sending…" : "📅 Confirm Visit"}
               </button>
             </>
           )}

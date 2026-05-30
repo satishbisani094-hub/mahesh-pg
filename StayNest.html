@@ -624,23 +624,35 @@
       <button class="modal-close" onclick="closeBook()">✕</button>
     </div>
     <div id="book-form-content">
-      <p style="color:var(--text-muted);margin-bottom:20px;font-size:14px">Schedule a free property visit at your convenience!</p>
-      <input class="form-input" type="text" placeholder="Full Name" style="margin-bottom:12px" />
-      <input class="form-input" type="tel" placeholder="Phone Number" style="margin-bottom:12px" />
-      <input class="form-input" type="date" style="margin-bottom:12px" />
-      <input class="form-input" type="time" style="margin-bottom:12px" />
-      <select class="modal-select">
-        <option>Select Room Type</option>
-        <option>Single Sharing – ₹19,000/mo</option>
-        <option>Double Sharing – ₹11,000/mo</option>
-        <option>Triple Sharing – ₹8,000/mo</option>
-      </select>
-      <button onclick="confirmBook()" style="width:100%;background:linear-gradient(135deg,var(--blue),var(--blue-light));border:none;color:#fff;padding:13px 0;border-radius:12px;font-weight:800;font-size:15px">📅 Confirm Visit</button>
+      <div id="book-form-fields">
+        <p style="color:var(--text-muted);margin-bottom:20px;font-size:14px">Schedule a free property visit at your convenience!</p>
+        <input class="form-input" id="book-name" type="text" placeholder="Full Name" style="margin-bottom:12px" />
+        <input class="form-input" id="book-phone" type="tel" placeholder="Phone Number" style="margin-bottom:12px" />
+        <input class="form-input" id="book-date" type="date" style="margin-bottom:12px" />
+        <input class="form-input" id="book-time" type="time" style="margin-bottom:12px" />
+        <select class="modal-select" id="book-room">
+          <option value="">Select Room Type</option>
+          <option>Single Sharing – ₹19,000/mo</option>
+          <option>Double Sharing – ₹11,000/mo</option>
+          <option>Triple Sharing – ₹8,000/mo</option>
+        </select>
+        <button onclick="confirmBook()" style="width:100%;margin-top:16px;background:linear-gradient(135deg,var(--blue),var(--blue-light));border:none;color:#fff;padding:13px 0;border-radius:12px;font-weight:800;font-size:15px">📅 Confirm Visit</button>
+      </div>
+      <div id="book-form-success" style="display:none;text-align:center;padding:20px 0">
+        <div style="font-size:50px;margin-bottom:12px">🎉</div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:20px;margin-bottom:10px;color:var(--text)">Visit Booked!</h3>
+        <p id="book-success-text" style="color:var(--text-muted);font-size:14px"></p>
+      </div>
     </div>
   </div>
 </div>
 
 <script>
+  const CONTACT_WHATSAPP = "919700053541";
+  const CONTACT_PHONE_DISPLAY = "+91 97000 53541";
+  // Optional: Web3Forms access key from https://web3forms.com (free, instant)
+  const WEB3FORMS_ACCESS_KEY = "";
+
   const ROOMS = [
     { type: "Single Sharing", price: 19000, accent: "#1A56DB", img: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600&q=80", features: ["Private Space", "Study Table", "Wardrobe", "AC"], popular: false },
     { type: "Double Sharing", price: 11000, accent: "#F97316", img: "https://images.unsplash.com/photo-1540518614846-7eded433c457?w=600&q=80", features: ["Shared Room", "2 Study Tables", "2 Wardrobes", "AC"], popular: true },
@@ -756,17 +768,127 @@
 
   function openEnquiry() { document.getElementById("enquiry-modal").style.display = "flex"; }
   function closeEnquiry() { document.getElementById("enquiry-modal").style.display = "none"; }
-  function openBook() { document.getElementById("book-modal").style.display = "flex"; document.getElementById("book-form-content").innerHTML = document.getElementById("book-form-content").innerHTML; }
-  function closeBook() { document.getElementById("book-modal").style.display = "none"; }
+  function resetBookForm() {
+    const fields = document.getElementById("book-form-fields");
+    const success = document.getElementById("book-form-success");
+    if (!fields || !success) return;
+    document.getElementById("book-name").value = "";
+    document.getElementById("book-phone").value = "";
+    document.getElementById("book-date").value = "";
+    document.getElementById("book-time").value = "";
+    document.getElementById("book-room").value = "";
+    fields.style.display = "block";
+    success.style.display = "none";
+  }
 
-  function confirmBook() {
-    document.getElementById("book-form-content").innerHTML = `
-      <div style="text-align:center;padding:20px 0">
-        <div style="font-size:50px;margin-bottom:12px">🎉</div>
-        <h3 style="font-family:'Playfair Display',serif;font-size:20px;margin-bottom:10px;color:var(--text)">Visit Booked!</h3>
-        <p style="color:var(--text-muted);font-size:14px">We'll confirm your slot via WhatsApp/call. See you soon!</p>
-      </div>
-    `;
+  function openBook() {
+    resetBookForm();
+    document.getElementById("book-modal").style.display = "flex";
+  }
+
+  function closeBook() {
+    document.getElementById("book-modal").style.display = "none";
+    resetBookForm();
+  }
+
+  function buildBookingMessage(name, phone, visitDate, roomType) {
+    return [
+      "🏠 *New Visit Booking – Jaya Co Living*",
+      "",
+      "*Name:* " + name,
+      "*Phone:* " + phone,
+      "*Visit:* " + visitDate,
+      "*Room Type:* " + roomType,
+    ].join("\n");
+  }
+
+  function openBookingWhatsApp(message) {
+    const url = "https://wa.me/" + CONTACT_WHATSAPP + "?text=" + encodeURIComponent(message);
+    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    if (isMobile) window.location.href = url;
+    else window.open(url, "_blank", "noopener,noreferrer");
+  }
+
+  async function sendBookingEmail(name, phone, visitDate, roomType, message) {
+    const key = (WEB3FORMS_ACCESS_KEY || "").trim();
+    if (!key) return false;
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: key,
+          subject: "New Visit Booking – Jaya Co Living",
+          from_name: name,
+          phone: phone,
+          visit_date: visitDate,
+          room_type: roomType,
+          message: message,
+        }),
+      });
+      const data = await res.json();
+      return data.success === true;
+    } catch {
+      return false;
+    }
+  }
+
+  async function confirmBook() {
+    const name = document.getElementById("book-name").value.trim();
+    const phone = document.getElementById("book-phone").value.trim();
+    const date = document.getElementById("book-date").value;
+    const time = document.getElementById("book-time").value;
+    const roomType = document.getElementById("book-room").value;
+    const btn = document.querySelector("#book-form-fields button");
+
+    if (!name) {
+      alert("Please enter your full name.");
+      return;
+    }
+    if (!phone || phone.replace(/\D/g, "").length < 10) {
+      alert("Please enter a valid phone number.");
+      return;
+    }
+    if (!date) {
+      alert("Please select your preferred visit date.");
+      return;
+    }
+    if (!time) {
+      alert("Please select your preferred visit time.");
+      return;
+    }
+    if (!roomType) {
+      alert("Please select a room type.");
+      return;
+    }
+
+    const visitDate = new Date(date + "T" + time).toLocaleString("en-IN", {
+      dateStyle: "medium",
+      timeStyle: "short",
+    });
+
+    const message = buildBookingMessage(name, phone, visitDate, roomType);
+
+    if (btn) {
+      btn.disabled = true;
+      btn.textContent = "Sending…";
+    }
+
+    const emailSent = await sendBookingEmail(name, phone, visitDate, roomType, message);
+    openBookingWhatsApp(message);
+
+    if (btn) {
+      btn.disabled = false;
+      btn.textContent = "📅 Confirm Visit";
+    }
+
+    document.getElementById("book-success-text").innerHTML =
+      "WhatsApp opened with your booking details.<br><br>" +
+      "Please tap <strong>Send</strong> in WhatsApp so we receive it on <strong>" + CONTACT_PHONE_DISPLAY + "</strong>." +
+      (emailSent ? "<br><br>We also sent a copy to your email inbox." : "");
+
+    document.getElementById("book-form-fields").style.display = "none";
+    document.getElementById("book-form-success").style.display = "block";
   }
 
   function submitContact() {
