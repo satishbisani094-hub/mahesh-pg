@@ -65,10 +65,10 @@ const PRICING = [
 ];
 
 const TESTIMONIALS = [
-  { name: "Priya Sharma", role: "Medical Student", review: "Java Co Living has been my home for 2 years. The food is amazing, security is top-notch, and the staff is incredibly helpful. Best decision I made!", rating: 5, avatar: "PS", color: "#DBEAFE" },
+  { name: "Priya Sharma", role: "Medical Student", review: "Jaya Co Living has been my home for 2 years. The food is amazing, security is top-notch, and the staff is incredibly helpful. Best decision I made!", rating: 5, avatar: "PS", color: "#DBEAFE" },
   { name: "Rahul Verma", role: "Software Engineer", review: "Perfect for working professionals. Fast WiFi, clean rooms, and the commute from here is super convenient. Highly recommend the premium plan!", rating: 5, avatar: "RV", color: "#FEE2E2" },
   { name: "Anjali Patel", role: "MBA Student", review: "Affordable, safe, and feels like home. The double sharing room gives enough personal space. The mess food is delicious and hygienic.", rating: 4, avatar: "AP", color: "#D1FAE5" },
-  { name: "Karthik Reddy", role: "IT Professional", review: "I've stayed at many PGs but Java Co Living stands out. Maintenance is prompt, security is excellent, and the environment is peaceful for focused work.", rating: 5, avatar: "KR", color: "#FEF3C7" },
+  { name: "Karthik Reddy", role: "IT Professional", review: "I've stayed at many PGs but Jaya Co Living stands out. Maintenance is prompt, security is excellent, and the environment is peaceful for focused work.", rating: 5, avatar: "KR", color: "#FEF3C7" },
 ];
 
 const FAQS = [
@@ -89,7 +89,7 @@ const NEARBY = [
   { name: "Kempegowda Airport", type: "✈️ Airport", dist: "45 km" },
 ];
 
-export default function JavaCoLiving() {
+export default function JayaCoLiving() {
   const [dark, setDark] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -153,7 +153,7 @@ export default function JavaCoLiving() {
       }}>
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
           <div style={{ width: 38, height: 38, borderRadius: 10, background: `linear-gradient(135deg, ${COLORS.blue}, ${COLORS.orange})`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20 }}>🏠</div>
-          <span style={{ fontSize: 22, fontWeight: 900, fontFamily: "'Playfair Display', serif", background: `linear-gradient(135deg, ${COLORS.blue}, ${COLORS.orange})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Java Co Living</span>
+          <span style={{ fontSize: 22, fontWeight: 900, fontFamily: "'Playfair Display', serif", background: `linear-gradient(135deg, ${COLORS.blue}, ${COLORS.orange})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Jaya Co Living</span>
         </div>
 
         <div style={{ display: "flex", gap: 4, alignItems: "center" }} className="desktop-nav">
@@ -246,7 +246,7 @@ export default function JavaCoLiving() {
         <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 60, alignItems: "center" }}>
           <FadeIn direction="left">
             <div style={{ position: "relative" }}>
-              <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80" alt="Java Co Living building" style={{ width: "100%", borderRadius: 20, objectFit: "cover", height: 400 }} />
+              <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80" alt="Jaya Co Living building" style={{ width: "100%", borderRadius: 20, objectFit: "cover", height: 400 }} />
               <div style={{ position: "absolute", bottom: -20, right: -20, background: `linear-gradient(135deg, ${COLORS.orange}, ${COLORS.orangeLight})`, borderRadius: 16, padding: "20px 24px", boxShadow: "0 8px 32px rgba(249,115,22,0.4)" }}>
                 <div style={{ color: "#fff", fontSize: 28, fontWeight: 900, fontFamily: "'Playfair Display', serif" }}>500+</div>
                 <div style={{ color: "rgba(255,255,255,0.9)", fontSize: 13, fontWeight: 600 }}>Happy Residents</div>
@@ -259,10 +259,10 @@ export default function JavaCoLiving() {
           </FadeIn>
           <FadeIn direction="right">
             <div>
-              <span style={{ color: COLORS.orange, fontWeight: 700, fontSize: 13, letterSpacing: 2, textTransform: "uppercase" }}>About Java Co Living</span>
+              <span style={{ color: COLORS.orange, fontWeight: 700, fontSize: 13, letterSpacing: 2, textTransform: "uppercase" }}>About Jaya Co Living</span>
               <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)", margin: "12px 0 20px", lineHeight: 1.2 }}>Your Home Away<br />From <span style={{ color: COLORS.blue }}>Home</span></h2>
               <p style={{ color: mutedText, lineHeight: 1.8, marginBottom: 20, fontSize: 15 }}>
-                Java Co Living was founded with a simple mission: to provide a safe, comfortable, and affordable living space for students and working professionals. With over 5 years of excellence, we've become Bangalore's most trusted PG accommodation.
+                Jaya Co Living was founded with a simple mission: to provide a safe, comfortable, and affordable living space for students and working professionals. With over 5 years of excellence, we've become Bangalore's most trusted PG accommodation.
               </p>
               <p style={{ color: mutedText, lineHeight: 1.8, marginBottom: 28, fontSize: 15 }}>
                 We believe that where you live shapes who you become. That's why we go beyond just providing a roof — we foster a community of growth, safety, and warmth.
@@ -451,10 +451,10 @@ export default function JavaCoLiving() {
               <div style={{ background: cardBg, borderRadius: 20, overflow: "hidden", border: `1.5px solid ${borderC}` }}>
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.073875684262!2d77.72728101476074!3d12.969839986160168!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae11ecd30e86fb%3A0x9adf30a067ca4611!2sWhitefield%2C%20Bengaluru%2C%20Karnataka!5e0!3m2!1sen!2sin!4v1710000000000!5m2!1sen!2sin"
-                  width="100%" height="320" style={{ border: 0, display: "block" }} allowFullScreen loading="lazy" title="Java Co Living Location"
+                  width="100%" height="320" style={{ border: 0, display: "block" }} allowFullScreen loading="lazy" title="Jaya Co Living Location"
                 />
                 <div style={{ padding: "16px 20px" }}>
-                  <div style={{ fontWeight: 700, fontSize: 15, marginBottom: 4 }}>📍 Java Co Living PG</div>
+                  <div style={{ fontWeight: 700, fontSize: 15, marginBottom: 4 }}>📍 Jaya Co Living PG</div>
                   <div style={{ color: mutedText, fontSize: 13 }}>Whitefield, Bangalore, Karnataka 560066</div>
                 </div>
               </div>
@@ -553,7 +553,7 @@ export default function JavaCoLiving() {
             <div>
               <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 18 }}>
                 <div style={{ width: 36, height: 36, borderRadius: 10, background: `linear-gradient(135deg, ${COLORS.blue}, ${COLORS.orange})`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18 }}>🏠</div>
-                <span style={{ fontSize: 20, fontWeight: 900, fontFamily: "'Playfair Display', serif", color: "#fff" }}>Java Co Living</span>
+                <span style={{ fontSize: 20, fontWeight: 900, fontFamily: "'Playfair Display', serif", color: "#fff" }}>Jaya Co Living</span>
               </div>
               <p style={{ color: "rgba(255,255,255,0.6)", fontSize: 14, lineHeight: 1.8, marginBottom: 20 }}>Your trusted PG accommodation partner in Bangalore. Safe, comfortable, and affordable living for students and professionals.</p>
               <div style={{ display: "flex", gap: 12 }}>
@@ -580,7 +580,7 @@ export default function JavaCoLiving() {
             ))}
           </div>
           <div style={{ borderTop: "1px solid rgba(255,255,255,0.1)", paddingTop: 24, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12 }}>
-            <div style={{ color: "rgba(255,255,255,0.5)", fontSize: 13 }}>© 2025 Java Co Living. All rights reserved. Made with ❤️ in Bangalore</div>
+            <div style={{ color: "rgba(255,255,255,0.5)", fontSize: 13 }}>© 2025 Jaya Co Living. All rights reserved. Made with ❤️ in Bangalore</div>
             <div style={{ display: "flex", gap: 20 }}>
               {["Privacy Policy", "Terms of Service"].map(l => <span key={l} style={{ color: "rgba(255,255,255,0.5)", fontSize: 13, cursor: "pointer" }}>{l}</span>)}
             </div>
