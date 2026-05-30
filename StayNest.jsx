@@ -488,9 +488,9 @@ export default function JavaCoLiving() {
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 40 }}>
             <FadeIn direction="left">
               <div>
-                {[["📞", "Call Us", "+91 91000 53541", "tel:+919100053541"],
+                {[["📞", "Call Us", "+91 97000 53541", "tel:+919700053541"],
                   ["📧", "Email Us", "msrdy@7gmail.com", "mailto:msrdy@7gmail.com"],
-                  ["💬", "WhatsApp", "+91 91000 53541", "https://wa.me/919100053541"],
+                  ["💬", "WhatsApp", "+91 97000 53541", "https://wa.me/919700053541"],
                   ["📍", "Visit Us", "Whitefield, Bangalore", null]
                 ].map(([icon, label, val, href]) => (
                   <div key={label} style={{ display: "flex", alignItems: "center", gap: 16, padding: "18px 22px", background: cardBg, border: `1.5px solid ${borderC}`, borderRadius: 14, marginBottom: 14, cursor: href ? "pointer" : "default" }}
@@ -565,7 +565,7 @@ export default function JavaCoLiving() {
             {[
               ["Quick Links", ["Home", "About Us", "Rooms", "Amenities", "Pricing", "Contact"]],
               ["Services", ["Single Room", "Double Room", "Triple Room", "Food Service", "Laundry"]],
-              ["Contact", ["📞 +91 91000 53541", "📧 msrdy@7gmail.com", "📍 Whitefield, Bangalore", "⏰ 9AM - 9PM (Support)"]],
+              ["Contact", ["📞 +91 97000 53541", "📧 msrdy@7gmail.com", "📍 Whitefield, Bangalore", "⏰ 9AM - 9PM (Support)"]],
             ].map(([title, items]) => (
               <div key={title}>
                 <div style={{ fontWeight: 800, fontSize: 15, marginBottom: 18, color: "#fff" }}>{title}</div>
@@ -589,7 +589,7 @@ export default function JavaCoLiving() {
       </footer>
 
       {/* WHATSAPP FLOATING BUTTON */}
-      <a href="https://wa.me/919100053541" target="_blank" rel="noopener noreferrer" style={{
+      <a href="https://wa.me/919700053541" target="_blank" rel="noopener noreferrer" style={{
         position: "fixed", bottom: 28, right: 28, zIndex: 200,
         width: 56, height: 56, borderRadius: "50%",
         background: "linear-gradient(135deg, #25D366, #128C7E)",
