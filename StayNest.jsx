@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from "react";
-import { CONTACT_PHONE_DISPLAY, submitBooking } from "./bookingNotify.js";
 
 const COLORS = {
   navy: "#0B1F3A",
@@ -40,29 +39,36 @@ const FadeIn = ({ children, delay = 0, direction = "up", className = "" }) => {
   );
 };
 
-const NAV_LINKS = ["Home", "About", "Rooms", "Amenities", "Pricing", "Location", "Contact", "FAQ"];
+const NAV_LINKS = ["Home", "About", "Rooms", "Amenities", "Pricing", "Testimonials", "Location", "Contact", "FAQ"];
 
 const ROOMS = [
-  { type: "Single Sharing", emoji: "🛏️", price: 19000, features: ["Private Space", "Study Table with Chair", "2 Wardrobe", "TV"], color: "#EFF6FF", accent: "#1A56DB", img: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600&q=80" },
-  { type: "Double Sharing", emoji: "🛏️🛏️", price: 11000, features: ["Shared Room", "Study Table with Chair", "2 Wardrobes", "TV"], color: "#FFF7ED", accent: "#F97316", img: "https://images.unsplash.com/photo-1540518614846-7eded433c457?w=600&q=80", popular: true },
-  { type: "Triple Sharing", emoji: "🛏️🛏️🛏️", price: 8000, features: ["Shared Room", "Study Table with Chair", "3 wardrobe", "TV"], color: "#F0FDF4", accent: "#16A34A", img: "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=600&q=80" },
+  { type: "Single Sharing", emoji: "🛏️", price: 8500, features: ["Private Space", "Study Table", "Wardrobe"], color: "#EFF6FF", accent: "#1A56DB", img: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" },
+  { type: "Double Sharing", emoji: "🛏️🛏️", price: 6000, features: ["Shared Room", "2 Study Tables", "2 Wardrobes", "AC"], color: "#FFF7ED", accent: "#F97316", img: "https://images.unsplash.com/photo-1540518614846-7eded433c457?w=600&q=80", popular: true },
+  { type: "Triple Sharing", emoji: "🛏️🛏️🛏️", price: 4500, features: ["Shared Room", "3 Study Tables", "Common Wardrobe", "AC"], color: "#F0FDF4", accent: "#16A34A", img: "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=600&q=80" },
 ];
 
 const AMENITIES = [
   { icon: "📶", label: "Free Wi-Fi", desc: "High-speed internet 24/7" },
-  { icon: "📺", label: "TV Entertainment", desc: "Enjoy your favorite shows" },
-  { icon: "🧹", label: "Housekeeping", desc: "Cleaning service" },
+  { icon: "❄️", label: "AC Rooms", desc: "Climate-controlled comfort" },
+  { icon: "🧹", label: "Housekeeping", desc: "Daily cleaning service" },
   { icon: "📷", label: "CCTV Security", desc: "24/7 surveillance" },
   { icon: "⚡", label: "Power Backup", desc: "Uninterrupted electricity" },
-  { icon: "🧺", label: "Washing Machine", desc: "Convenient self-service laundry" },
+  { icon: "👕", label: "Laundry", desc: "Wash & fold service" },
   { icon: "🍽️", label: "Healthy Food", desc: "Home-cooked meals" },
-  { icon: "🚗", label: "Parking", desc: "Secure vehicle parking" },
+  { icon: "🏍️", label: "Parking", desc: "Secure vehicle parking" },
 ];
 
 const PRICING = [
-  { plan: "Basic", price: 8000, type: "Triple Sharing", features: ["Shared Room", "Free Wi-Fi", "CCTV Security", "Power Backup", "Common Washroom"], popular: false },
-  { plan: "Standard", price: 11000, type: "Double Sharing", features: ["Shared Room", "Free Wi-Fi", "CCTV Security", "Power Backup", "Attached Washroom", "Housekeeping"], popular: true },
-  { plan: "Premium", price: 19000, type: "Single Sharing", features: ["Private AC Room", "Free Wi-Fi", "CCTV Security", "Power Backup", "Private Washroom", "Housekeeping"], popular: false },
+  { plan: "Basic", price: 4500, type: "Triple Sharing", features: ["Shared Room", "Free Wi-Fi", "CCTV Security", "Power Backup", "Common Washroom"], popular: false },
+  { plan: "Standard", price: 6000, type: "Double Sharing", features: ["Shared Room", "Free Wi-Fi", "CCTV Security", "Power Backup", "Attached Washroom", "Daily Housekeeping", "Laundry Service"], popular: true },
+  { plan: "Premium", price: 8500, type: "Single Sharing", features: ["Private Room", "Free Wi-Fi", "CCTV Security", "Power Backup", "Private Washroom", "Daily Housekeeping", "Laundry Service", "Healthy Meals", "Study Room Access"], popular: false },
+];
+
+const TESTIMONIALS = [
+  { name: "Priya Sharma", role: "Medical Student", review: "StayNest has been my home for 2 years. The food is amazing, security is top-notch, and the staff is incredibly helpful. Best decision I made!", rating: 5, avatar: "PS", color: "#DBEAFE" },
+  { name: "Rahul Verma", role: "Software Engineer", review: "Perfect for working professionals. Fast WiFi, clean rooms, and the commute from here is super convenient. Highly recommend the premium plan!", rating: 5, avatar: "RV", color: "#FEE2E2" },
+  { name: "Anjali Patel", role: "MBA Student", review: "Affordable, safe, and feels like home. The double sharing room gives enough personal space. The mess food is delicious and hygienic.", rating: 4, avatar: "AP", color: "#D1FAE5" },
+  { name: "Karthik Reddy", role: "IT Professional", review: "I've stayed at many PGs but StayNest stands out. Maintenance is prompt, security is excellent, and the environment is peaceful for focused work.", rating: 5, avatar: "KR", color: "#FEF3C7" },
 ];
 
 const FAQS = [
@@ -75,15 +81,15 @@ const FAQS = [
 ];
 
 const NEARBY = [
-  { name: "Garden City University", type: "🎓 University", dist: "4 km" },
-  { name: "ITPL", type: "💼 IT Hub", dist: "2 km" },
-  { name: "Columbia Asia Hospital", type: "🏥 Hospital", dist: "2 km" },
-  { name: "Whitefield Metro", type: "🚇 Metro Station", dist: "1.2 km" },
-  { name: "Phoenix Marketcity", type: "🛍️ Shopping", dist: "3 km" },
-  { name: "Kempegowda Airport", type: "✈️ Airport", dist: "45 km" },
+  { name: "Osmania University", type: "🎓 University", dist: "1.2 km" },
+  { name: "HITEC City", type: "💼 IT Hub", dist: "3.5 km" },
+  { name: "Apollo Hospital", type: "🏥 Hospital", dist: "2.1 km" },
+  { name: "Ameerpet Metro", type: "🚇 Metro Station", dist: "0.8 km" },
+  { name: "Banjara Hills", type: "🛍️ Shopping", dist: "2.8 km" },
+  { name: "Hyderabad Airport", type: "✈️ Airport", dist: "32 km" },
 ];
 
-export default function JayaCoLiving() {
+export default function StayNest() {
   const [dark, setDark] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -94,9 +100,6 @@ export default function JayaCoLiving() {
   const [searchQuery, setSearchQuery] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [bookSubmitted, setBookSubmitted] = useState(false);
-  const [bookSending, setBookSending] = useState(false);
-  const [bookEmailSent, setBookEmailSent] = useState(false);
-  const [bookForm, setBookForm] = useState({ name: "", phone: "", date: "", time: "", roomType: "" });
 
   const HERO_SLIDES = [
     { bg: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=1400&q=80", caption: "Modern Rooms" },
@@ -133,56 +136,6 @@ export default function JayaCoLiving() {
 
   const handleFormChange = (e) => setFormData(p => ({ ...p, [e.target.name]: e.target.value }));
 
-  const handleBookChange = (e) => setBookForm(p => ({ ...p, [e.target.name]: e.target.value }));
-
-  const handleBookConfirm = async () => {
-    const { name, phone, date, time, roomType } = bookForm;
-    if (!name.trim()) {
-      alert("Please enter your full name.");
-      return;
-    }
-    if (!phone.trim() || phone.replace(/\D/g, "").length < 10) {
-      alert("Please enter a valid phone number.");
-      return;
-    }
-    if (!date) {
-      alert("Please select your preferred visit date.");
-      return;
-    }
-    if (!time) {
-      alert("Please select your preferred visit time.");
-      return;
-    }
-    if (!roomType || roomType === "Select Room Type") {
-      alert("Please select a room type.");
-      return;
-    }
-
-    const visitDate = new Date(`${date}T${time}`).toLocaleString("en-IN", {
-      dateStyle: "medium",
-      timeStyle: "short",
-    });
-
-    setBookSending(true);
-    const { emailSent } = await submitBooking({
-      name: name.trim(),
-      phone: phone.trim(),
-      visitDate,
-      roomType,
-    });
-    setBookSending(false);
-    setBookEmailSent(emailSent);
-    setBookSubmitted(true);
-  };
-
-  const closeBookModal = () => {
-    setBookOpen(false);
-    setBookSubmitted(false);
-    setBookEmailSent(false);
-    setBookSending(false);
-    setBookForm({ name: "", phone: "", date: "", time: "", roomType: "" });
-  };
-
   return (
     <div style={{ background: bg, color: text, fontFamily: "'Nunito', 'Segoe UI', sans-serif", minHeight: "100vh", transition: "background 0.3s, color 0.3s" }}>
       <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet" />
@@ -200,7 +153,7 @@ export default function JayaCoLiving() {
       }}>
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
           <div style={{ width: 38, height: 38, borderRadius: 10, background: `linear-gradient(135deg, ${COLORS.blue}, ${COLORS.orange})`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20 }}>🏠</div>
-          <span style={{ fontSize: 22, fontWeight: 900, fontFamily: "'Playfair Display', serif", background: `linear-gradient(135deg, ${COLORS.blue}, ${COLORS.orange})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Jaya Co Living</span>
+          <span style={{ fontSize: 22, fontWeight: 900, fontFamily: "'Playfair Display', serif", background: `linear-gradient(135deg, ${COLORS.blue}, ${COLORS.orange})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>StayNest</span>
         </div>
 
         <div style={{ display: "flex", gap: 4, alignItems: "center" }} className="desktop-nav">
@@ -244,7 +197,7 @@ export default function JayaCoLiving() {
         ))}
         <div style={{ position: "relative", zIndex: 2, height: "100%", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", padding: "0 5%", paddingTop: 70 }}>
           <div style={{ animation: "fadeUp 1s ease forwards", opacity: 0 }}>
-            <span style={{ background: `${COLORS.orange}22`, border: `1.5px solid ${COLORS.orange}`, color: COLORS.orange, borderRadius: 30, padding: "6px 18px", fontSize: 13, fontWeight: 700, letterSpacing: 1 }}>🏆 #1 Rated PG in Bangalore</span>
+            <span style={{ background: `${COLORS.orange}22`, border: `1.5px solid ${COLORS.orange}`, color: COLORS.orange, borderRadius: 30, padding: "6px 18px", fontSize: 13, fontWeight: 700, letterSpacing: 1 }}>🏆 #1 Rated PG in Hyderabad</span>
             <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(2.2rem, 5.5vw, 4.5rem)", color: "#fff", margin: "20px 0 16px", lineHeight: 1.15, fontWeight: 900 }}>
               Find Your Perfect Stay<br /><span style={{ color: COLORS.orange }}>Away From Home</span>
             </h1>
@@ -279,7 +232,7 @@ export default function JayaCoLiving() {
 
         {/* Stats bar */}
         <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, zIndex: 2, background: "rgba(255,255,255,0.1)", backdropFilter: "blur(20px)", borderTop: "1px solid rgba(255,255,255,0.2)", display: "flex", justifyContent: "center", gap: "clamp(20px, 6vw, 80px)", padding: "16px 5%" }}>
-          {[["50+", "Happy Residents"], ["4.9★", "Average Rating"], ["2+", "Years Experience"], ["24/7", "Support"]].map(([num, label]) => (
+          {[["500+", "Happy Residents"], ["4.9★", "Average Rating"], ["5+", "Years Experience"], ["24/7", "Support"]].map(([num, label]) => (
             <div key={label} style={{ textAlign: "center" }}>
               <div style={{ color: COLORS.orange, fontWeight: 900, fontSize: "clamp(1.1rem, 2.5vw, 1.5rem)", fontFamily: "'Playfair Display', serif" }}>{num}</div>
               <div style={{ color: "rgba(255,255,255,0.75)", fontSize: "clamp(10px, 1.5vw, 13px)", fontWeight: 600 }}>{label}</div>
@@ -293,9 +246,9 @@ export default function JayaCoLiving() {
         <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 60, alignItems: "center" }}>
           <FadeIn direction="left">
             <div style={{ position: "relative" }}>
-              <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80" alt="Jaya Co Living building" style={{ width: "100%", borderRadius: 20, objectFit: "cover", height: 400 }} />
+              <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80" alt="StayNest building" style={{ width: "100%", borderRadius: 20, objectFit: "cover", height: 400 }} />
               <div style={{ position: "absolute", bottom: -20, right: -20, background: `linear-gradient(135deg, ${COLORS.orange}, ${COLORS.orangeLight})`, borderRadius: 16, padding: "20px 24px", boxShadow: "0 8px 32px rgba(249,115,22,0.4)" }}>
-                <div style={{ color: "#fff", fontSize: 28, fontWeight: 900, fontFamily: "'Playfair Display', serif" }}>50+</div>
+                <div style={{ color: "#fff", fontSize: 28, fontWeight: 900, fontFamily: "'Playfair Display', serif" }}>500+</div>
                 <div style={{ color: "rgba(255,255,255,0.9)", fontSize: 13, fontWeight: 600 }}>Happy Residents</div>
               </div>
               <div style={{ position: "absolute", top: -16, left: -16, background: cardBg, border: `2px solid ${COLORS.blue}`, borderRadius: 16, padding: "12px 18px", boxShadow: "0 4px 20px rgba(0,0,0,0.12)" }}>
@@ -306,10 +259,10 @@ export default function JayaCoLiving() {
           </FadeIn>
           <FadeIn direction="right">
             <div>
-              <span style={{ color: COLORS.orange, fontWeight: 700, fontSize: 13, letterSpacing: 2, textTransform: "uppercase" }}>About Jaya Co Living</span>
+              <span style={{ color: COLORS.orange, fontWeight: 700, fontSize: 13, letterSpacing: 2, textTransform: "uppercase" }}>About StayNest</span>
               <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)", margin: "12px 0 20px", lineHeight: 1.2 }}>Your Home Away<br />From <span style={{ color: COLORS.blue }}>Home</span></h2>
               <p style={{ color: mutedText, lineHeight: 1.8, marginBottom: 20, fontSize: 15 }}>
-                Jaya Co Living was founded with a simple mission: to provide a safe, comfortable, and affordable living space for students and working professionals. With over 2+ years of excellence, we've become Bangalore's most trusted PG accommodation.
+                StayNest was founded with a simple mission: to provide a safe, comfortable, and affordable living space for students and working professionals. With over 5 years of excellence, we've become Hyderabad's most trusted PG accommodation.
               </p>
               <p style={{ color: mutedText, lineHeight: 1.8, marginBottom: 28, fontSize: 15 }}>
                 We believe that where you live shapes who you become. That's why we go beyond just providing a roof — we foster a community of growth, safety, and warmth.
@@ -450,6 +403,39 @@ export default function JayaCoLiving() {
         </div>
       </section>
 
+      {/* TESTIMONIALS */}
+      <section id="testimonials" style={{ padding: "90px 5%" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+          <FadeIn>
+            <div style={{ textAlign: "center", marginBottom: 54 }}>
+              <span style={{ color: COLORS.orange, fontWeight: 700, fontSize: 13, letterSpacing: 2, textTransform: "uppercase" }}>Testimonials</span>
+              <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)", margin: "12px 0 14px" }}>What Our <span style={{ color: COLORS.blue }}>Residents Say</span></h2>
+            </div>
+          </FadeIn>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 22 }}>
+            {TESTIMONIALS.map((t, i) => (
+              <FadeIn key={t.name} delay={i * 100}>
+                <div style={{ background: cardBg, border: `1.5px solid ${borderC}`, borderRadius: 20, padding: "26px 24px", transition: "transform 0.3s, box-shadow 0.3s" }}
+                  onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-4px)"; e.currentTarget.style.boxShadow = "0 12px 36px rgba(0,0,0,0.1)"; }}
+                  onMouseLeave={e => { e.currentTarget.style.transform = "none"; e.currentTarget.style.boxShadow = "none"; }}>
+                  <div style={{ display: "flex", gap: 2, marginBottom: 14 }}>
+                    {Array.from({ length: t.rating }).map((_, j) => <span key={j} style={{ color: "#F59E0B", fontSize: 16 }}>⭐</span>)}
+                  </div>
+                  <p style={{ color: mutedText, fontSize: 14, lineHeight: 1.75, marginBottom: 20, fontStyle: "italic" }}>"{t.review}"</p>
+                  <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                    <div style={{ width: 44, height: 44, borderRadius: "50%", background: t.color, display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 800, fontSize: 14, color: COLORS.blue }}>{t.avatar}</div>
+                    <div>
+                      <div style={{ fontWeight: 800, fontSize: 14 }}>{t.name}</div>
+                      <div style={{ color: mutedText, fontSize: 12 }}>{t.role}</div>
+                    </div>
+                  </div>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* LOCATION */}
       <section id="location" style={{ padding: "90px 5%", background: dark ? "#0F172A" : COLORS.gray50 }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
@@ -457,19 +443,19 @@ export default function JayaCoLiving() {
             <div style={{ textAlign: "center", marginBottom: 54 }}>
               <span style={{ color: COLORS.orange, fontWeight: 700, fontSize: 13, letterSpacing: 2, textTransform: "uppercase" }}>Our Location</span>
               <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)", margin: "12px 0 14px" }}>Perfectly <span style={{ color: COLORS.blue }}>Located</span></h2>
-              <p style={{ color: mutedText }}>Near top colleges, IT hubs, hospitals & metro stations in Bangalore</p>
+              <p style={{ color: mutedText }}>Near top colleges, IT hubs, hospitals & metro stations in Hyderabad</p>
             </div>
           </FadeIn>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 30, alignItems: "start" }}>
             <FadeIn direction="left">
               <div style={{ background: cardBg, borderRadius: 20, overflow: "hidden", border: `1.5px solid ${borderC}` }}>
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.073875684262!2d77.72728101476074!3d12.969839986160168!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae11ecd30e86fb%3A0x9adf30a067ca4611!2sWhitefield%2C%20Bengaluru%2C%20Karnataka!5e0!3m2!1sen!2sin!4v1710000000000!5m2!1sen!2sin"
-                  width="100%" height="320" style={{ border: 0, display: "block" }} allowFullScreen loading="lazy" title="Jaya Co Living Location"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d60893.96395082658!2d78.3564785!3d17.3850443!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb99daeaebd2c7%3A0xae93b78392bafbc2!2sHyderabad%2C%20Telangana!5e0!3m2!1sen!2sin!4v1698000000000!5m2!1sen!2sin"
+                  width="100%" height="320" style={{ border: 0, display: "block" }} allowFullScreen loading="lazy" title="StayNest Location"
                 />
                 <div style={{ padding: "16px 20px" }}>
-                  <div style={{ fontWeight: 700, fontSize: 15, marginBottom: 4 }}>📍 Jaya Co Living PG</div>
-                  <div style={{ color: mutedText, fontSize: 13 }}>Whitefield, Bangalore, Karnataka 560066</div>
+                  <div style={{ fontWeight: 700, fontSize: 15, marginBottom: 4 }}>📍 StayNest PG</div>
+                  <div style={{ color: mutedText, fontSize: 13 }}>Ameerpet, Hyderabad, Telangana 500016</div>
                 </div>
               </div>
             </FadeIn>
@@ -502,9 +488,9 @@ export default function JayaCoLiving() {
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 40 }}>
             <FadeIn direction="left">
               <div>
-                {[["📞", "Call Us", "+91 97000 53541", "tel:+919700053541"],
+                {[["📞", "Call Us", "+91 91000 53541", "tel:+919100053541"],
                   ["📧", "Email Us", "msrdy@7gmail.com", "mailto:msrdy@7gmail.com"],
-                  ["💬", "WhatsApp", "+91 97000 53541", "https://wa.me/919700053541"],
+                  ["💬", "WhatsApp", "+91 91000 53541", "https://wa.me/919100053541"],
                   ["📍", "Visit Us", "Whitefield, Bangalore", null]
                 ].map(([icon, label, val, href]) => (
                   <div key={label} style={{ display: "flex", alignItems: "center", gap: 16, padding: "18px 22px", background: cardBg, border: `1.5px solid ${borderC}`, borderRadius: 14, marginBottom: 14, cursor: href ? "pointer" : "default" }}
@@ -567,7 +553,7 @@ export default function JayaCoLiving() {
             <div>
               <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 18 }}>
                 <div style={{ width: 36, height: 36, borderRadius: 10, background: `linear-gradient(135deg, ${COLORS.blue}, ${COLORS.orange})`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18 }}>🏠</div>
-                <span style={{ fontSize: 20, fontWeight: 900, fontFamily: "'Playfair Display', serif", color: "#fff" }}>Jaya Co Living</span>
+                <span style={{ fontSize: 20, fontWeight: 900, fontFamily: "'Playfair Display', serif", color: "#fff" }}>StayNest</span>
               </div>
               <p style={{ color: "rgba(255,255,255,0.6)", fontSize: 14, lineHeight: 1.8, marginBottom: 20 }}>Your trusted PG accommodation partner in Bangalore. Safe, comfortable, and affordable living for students and professionals.</p>
               <div style={{ display: "flex", gap: 12 }}>
@@ -578,8 +564,8 @@ export default function JayaCoLiving() {
             </div>
             {[
               ["Quick Links", ["Home", "About Us", "Rooms", "Amenities", "Pricing", "Contact"]],
-              ["Services", ["Single Room", "Double Room", "Triple Room", "Food Service", "Washing Machine"]],
-              ["Contact", ["📞 +91 97000 53541", "📧 msrdy@7gmail.com", "📍 Whitefield, Bangalore", "⏰ 9AM - 9PM (Support)"]],
+              ["Services", ["Single Room", "Double Room", "Triple Room", "Food Service", "Laundry"]],
+              ["Contact", ["📞 +91 98765 43210", "📧 hello@staynest.in", "📍 Ameerpet, Bangalore", "⏰ 9AM - 9PM (Support)"]],
             ].map(([title, items]) => (
               <div key={title}>
                 <div style={{ fontWeight: 800, fontSize: 15, marginBottom: 18, color: "#fff" }}>{title}</div>
@@ -594,7 +580,7 @@ export default function JayaCoLiving() {
             ))}
           </div>
           <div style={{ borderTop: "1px solid rgba(255,255,255,0.1)", paddingTop: 24, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12 }}>
-            <div style={{ color: "rgba(255,255,255,0.5)", fontSize: 13 }}>© 2025 Jaya Co Living. All rights reserved. Made with ❤️ in Bangalore</div>
+            <div style={{ color: "rgba(255,255,255,0.5)", fontSize: 13 }}>© 2025 StayNest. All rights reserved. Made with ❤️ in Hyderabad</div>
             <div style={{ display: "flex", gap: 20 }}>
               {["Privacy Policy", "Terms of Service"].map(l => <span key={l} style={{ color: "rgba(255,255,255,0.5)", fontSize: 13, cursor: "pointer" }}>{l}</span>)}
             </div>
@@ -603,7 +589,7 @@ export default function JayaCoLiving() {
       </footer>
 
       {/* WHATSAPP FLOATING BUTTON */}
-      <a href="https://wa.me/919700053541" target="_blank" rel="noopener noreferrer" style={{
+      <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer" style={{
         position: "fixed", bottom: 28, right: 28, zIndex: 200,
         width: 56, height: 56, borderRadius: "50%",
         background: "linear-gradient(135deg, #25D366, #128C7E)",
@@ -632,43 +618,27 @@ export default function JayaCoLiving() {
 
       {/* BOOK VISIT MODAL */}
       {bookOpen && (
-        <Modal onClose={closeBookModal} title="Book a Visit" dark={dark} cardBg={cardBg} borderC={borderC} text={text} mutedText={mutedText}>
+        <Modal onClose={() => { setBookOpen(false); setBookSubmitted(false); }} title="Book a Visit" dark={dark} cardBg={cardBg} borderC={borderC} text={text} mutedText={mutedText}>
           {bookSubmitted ? (
             <div style={{ textAlign: "center", padding: "20px 0" }}>
               <div style={{ fontSize: 50, marginBottom: 12 }}>🎉</div>
               <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 20, marginBottom: 10, color: text }}>Visit Booked!</h3>
-              <p style={{ color: mutedText, fontSize: 14, lineHeight: 1.6 }}>
-                WhatsApp opened with your booking details.
-                <br /><br />
-                Please tap <strong>Send</strong> in WhatsApp so we receive it on <strong>{CONTACT_PHONE_DISPLAY}</strong>.
-                {bookEmailSent && (
-                  <>
-                    <br /><br />
-                    We also sent a copy to your email inbox.
-                  </>
-                )}
-              </p>
+              <p style={{ color: mutedText, fontSize: 14 }}>We'll confirm your slot via WhatsApp/call. See you soon!</p>
             </div>
           ) : (
             <>
               <p style={{ color: mutedText, marginBottom: 20, fontSize: 14 }}>Schedule a free property visit at your convenience!</p>
-              <input name="name" type="text" placeholder="Full Name" value={bookForm.name} onChange={handleBookChange}
-                style={{ width: "100%", marginBottom: 12, padding: "12px 14px", borderRadius: 10, border: `1.5px solid ${borderC}`, background: dark ? "#1E293B" : "#F9FAFB", color: text, fontSize: 14, outline: "none", boxSizing: "border-box", fontFamily: "inherit" }} />
-              <input name="phone" type="tel" placeholder="Phone Number" value={bookForm.phone} onChange={handleBookChange}
-                style={{ width: "100%", marginBottom: 12, padding: "12px 14px", borderRadius: 10, border: `1.5px solid ${borderC}`, background: dark ? "#1E293B" : "#F9FAFB", color: text, fontSize: 14, outline: "none", boxSizing: "border-box", fontFamily: "inherit" }} />
-              <input name="date" type="date" placeholder="Preferred Date" value={bookForm.date} onChange={handleBookChange}
-                style={{ width: "100%", marginBottom: 12, padding: "12px 14px", borderRadius: 10, border: `1.5px solid ${borderC}`, background: dark ? "#1E293B" : "#F9FAFB", color: text, fontSize: 14, outline: "none", boxSizing: "border-box", fontFamily: "inherit" }} />
-              <input name="time" type="time" placeholder="Preferred Time" value={bookForm.time} onChange={handleBookChange}
-                style={{ width: "100%", marginBottom: 12, padding: "12px 14px", borderRadius: 10, border: `1.5px solid ${borderC}`, background: dark ? "#1E293B" : "#F9FAFB", color: text, fontSize: 14, outline: "none", boxSizing: "border-box", fontFamily: "inherit" }} />
-              <select name="roomType" value={bookForm.roomType} onChange={handleBookChange}
-                style={{ width: "100%", marginBottom: 16, padding: "12px 14px", borderRadius: 10, border: `1.5px solid ${borderC}`, background: dark ? "#1E293B" : "#F9FAFB", color: text, fontSize: 14, outline: "none", fontFamily: "inherit" }}>
-                <option value="">Select Room Type</option>
-                <option>Single Sharing - ₹19,000/mo</option>
-                <option>Double Sharing - ₹11,000/mo</option>
-                <option>Triple Sharing - ₹8,000/mo</option>
+              {[["Full Name", "text"], ["Phone Number", "tel"], ["Preferred Date", "date"], ["Preferred Time", "time"]].map(([ph, type]) => (
+                <input key={ph} type={type} placeholder={ph} style={{ width: "100%", marginBottom: 12, padding: "12px 14px", borderRadius: 10, border: `1.5px solid ${borderC}`, background: dark ? "#1E293B" : "#F9FAFB", color: text, fontSize: 14, outline: "none", boxSizing: "border-box", fontFamily: "inherit" }} />
+              ))}
+              <select style={{ width: "100%", marginBottom: 16, padding: "12px 14px", borderRadius: 10, border: `1.5px solid ${borderC}`, background: dark ? "#1E293B" : "#F9FAFB", color: text, fontSize: 14, outline: "none", fontFamily: "inherit" }}>
+                <option>Select Room Type</option>
+                <option>Single Sharing - ₹8,500/mo</option>
+                <option>Double Sharing - ₹6,000/mo</option>
+                <option>Triple Sharing - ₹4,500/mo</option>
               </select>
-              <button onClick={handleBookConfirm} disabled={bookSending} style={{ width: "100%", background: `linear-gradient(135deg, ${COLORS.blue}, ${COLORS.blueLight})`, border: "none", color: "#fff", padding: "13px 0", borderRadius: 12, fontWeight: 800, fontSize: 15, cursor: bookSending ? "wait" : "pointer", opacity: bookSending ? 0.75 : 1 }}>
-                {bookSending ? "Sending…" : "📅 Confirm Visit"}
+              <button onClick={() => setBookSubmitted(true)} style={{ width: "100%", background: `linear-gradient(135deg, ${COLORS.blue}, ${COLORS.blueLight})`, border: "none", color: "#fff", padding: "13px 0", borderRadius: 12, fontWeight: 800, fontSize: 15, cursor: "pointer" }}>
+                📅 Confirm Visit
               </button>
             </>
           )}
