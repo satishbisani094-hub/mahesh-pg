@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jaya Co Living – Premium PG Accommodation in Bangalore</title>
+  <meta name="description" content="Jaya Co Living offers affordable, safe and comfortable PG accommodation for students and working professionals in Bangalore. Find your perfect stay today." />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #0B1F3A;
+      --blue: #1A56DB;
+      --blue-light: #3B82F6;
+      --orange: #F97316;
+      --orange-light: #FB923C;
+      --white: #FFFFFF;
+      --off-white: #F8FAFF;
+      --gray-50: #F9FAFB;
+      --gray-100: #F3F4F6;
+      --gray-200: #E5E7EB;
+      --gray-400: #9CA3AF;
+      --gray-600: #4B5563;
+      --gray-800: #1F2937;
+      --card-bg: #FFFFFF;
+      --body-bg: #F8FAFF;
+      --text: #0B1F3A;
+      --text-muted: #4B5563;
+      --border: #E5E7EB;
+    }
+    [data-dark="true"] {
+      --card-bg: #1E293B;
+      --body-bg: #0F172A;
+      --text: #F1F5F9;
+      --text-muted: #94A3B8;
+      --border: #334155;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Nunito', 'Segoe UI', sans-serif; background: var(--body-bg); color: var(--text); transition: background 0.3s, color 0.3s; }
+    img { display: block; }
+    a { text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; }
+    input, textarea, select { font-family: inherit; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%; height: 70px; transition: all 0.3s;
+    }
+    nav.scrolled {
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 2px 24px rgba(0,0,0,0.12);
+    }
+    [data-dark="true"] nav.scrolled { background: rgba(15,23,42,0.97); }
+    .nav-logo { display: flex; align-items: center; gap: 10px; }
+    .nav-logo-icon { width: 38px; height: 38px; border-radius: 10px; background: linear-gradient(135deg, var(--blue), var(--orange)); display: flex; align-items: center; justify-content: center; font-size: 20px; }
+    .nav-logo-text { font-size: 22px; font-weight: 900; font-family: 'Playfair Display', serif; background: linear-gradient(135deg, var(--blue), var(--orange)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .nav-links { display: flex; gap: 4px; align-items: center; }
+    .nav-link { background: none; border: none; font-weight: 600; font-size: 14px; padding: 6px 12px; border-radius: 8px; transition: all 0.2s; color: #fff; }
+    nav.scrolled .nav-link { color: var(--text); }
+    .nav-link:hover { background: rgba(26,86,219,0.1); color: var(--blue) !important; }
+    .nav-enquire { background: linear-gradient(135deg, var(--orange), var(--orange-light)); border: none; color: #fff; font-weight: 700; padding: 8px 20px; border-radius: 20px; font-size: 14px; }
+    .nav-dark-btn { background: none; border: 1.5px solid var(--border); border-radius: 20px; padding: 6px 12px; font-size: 16px; color: var(--text); }
+    .hamburger { display: none; background: none; border: none; font-size: 26px; color: #fff; }
+    nav.scrolled .hamburger { color: var(--text); }
+    .mobile-menu { display: none; position: fixed; top: 70px; left: 0; right: 0; background: var(--card-bg); z-index: 99; padding: 20px; box-shadow: 0 8px 32px rgba(0,0,0,0.15); }
+    .mobile-menu.open { display: block; }
+    .mobile-menu-link { display: block; width: 100%; text-align: left; background: none; border: none; padding: 12px 0; font-size: 16px; font-weight: 600; color: var(--text); border-bottom: 1px solid var(--border); }
+
+    /* HERO */
+    .hero { position: relative; height: 100vh; overflow: hidden; }
+    .hero-slide { position: absolute; inset: 0; background-size: cover; background-position: center; transition: opacity 1s ease; opacity: 0; }
+    .hero-slide.active { opacity: 1; }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(11,31,58,0.82) 0%, rgba(11,31,58,0.5) 60%, rgba(26,86,219,0.3) 100%); }
+    .hero-content { position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 80px 5% 0; }
+    .hero-badge { display: inline-block; background: rgba(249,115,22,0.15); border: 1.5px solid var(--orange); color: var(--orange); border-radius: 30px; padding: 6px 18px; font-size: 13px; font-weight: 700; letter-spacing: 1px; margin-bottom: 20px; }
+    .hero-h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 5.5vw, 4.5rem); color: #fff; margin-bottom: 16px; line-height: 1.15; font-weight: 900; animation: fadeUp 1s ease forwards; }
+    .hero-h1 span { color: var(--orange); }
+    .hero-sub { font-size: clamp(1rem, 2vw, 1.25rem); color: rgba(255,255,255,0.85); max-width: 580px; margin: 0 auto 32px; }
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; margin-bottom: 40px; }
+    .btn-primary { background: linear-gradient(135deg, var(--blue), var(--blue-light)); border: none; color: #fff; padding: 14px 32px; border-radius: 30px; font-weight: 800; font-size: 15px; box-shadow: 0 8px 24px rgba(26,86,219,0.4); }
+    .btn-outline { background: rgba(255,255,255,0.12); border: 2px solid rgba(255,255,255,0.5); color: #fff; padding: 14px 32px; border-radius: 30px; font-weight: 700; font-size: 15px; backdrop-filter: blur(8px); }
+    .search-bar { background: rgba(255,255,255,0.12); backdrop-filter: blur(16px); border: 1.5px solid rgba(255,255,255,0.25); border-radius: 50px; padding: 8px 8px 8px 24px; display: flex; align-items: center; gap: 12px; max-width: 480px; width: 90%; }
+    .search-bar input { background: none; border: none; outline: none; color: #fff; font-size: 14px; flex: 1; font-family: inherit; }
+    .search-bar input::placeholder { color: rgba(255,255,255,0.65); }
+    .search-btn { background: var(--orange); border: none; color: #fff; padding: 10px 20px; border-radius: 40px; font-weight: 700; font-size: 13px; }
+    .slide-dots { display: flex; gap: 8px; margin-top: 32px; }
+    .dot { width: 8px; height: 8px; border-radius: 4px; background: rgba(255,255,255,0.4); border: none; transition: all 0.3s; padding: 0; cursor: pointer; }
+    .dot.active { width: 24px; background: var(--orange); }
+    .stats-bar { position: absolute; bottom: 0; left: 0; right: 0; z-index: 1; background: rgba(255,255,255,0.1); backdrop-filter: blur(20px); border-top: 1px solid rgba(255,255,255,0.2); display: flex; justify-content: center; gap: clamp(20px,6vw,80px); padding: 16px 5%; pointer-events: none; }
+    .stat-num { color: var(--orange); font-weight: 900; font-size: clamp(1.1rem,2.5vw,1.5rem); font-family: 'Playfair Display', serif; }
+    .stat-label { color: rgba(255,255,255,0.75); font-size: clamp(10px,1.5vw,13px); font-weight: 600; text-align: center; }
+
+    /* SECTIONS */
+    section { padding: 90px 5%; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-label { color: var(--orange); font-weight: 700; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem,3.5vw,2.6rem); margin: 12px 0 14px; }
+    .section-title span { color: var(--blue); }
+    .section-desc { color: var(--text-muted); max-width: 500px; margin: 0 auto; font-size: 15px; }
+    .section-header { text-align: center; margin-bottom: 54px; }
+    .alt-bg { background: var(--gray-50); }
+    [data-dark="true"] .alt-bg { background: #0F172A; }
+    .dark-bg { background: var(--navy); }
+
+    /* ABOUT */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .about-img-wrap { position: relative; }
+    .about-img { width: 100%; border-radius: 20px; object-fit: cover; height: 400px; }
+    .about-badge-orange { position: absolute; bottom: -20px; right: -20px; background: linear-gradient(135deg, var(--orange), var(--orange-light)); border-radius: 16px; padding: 20px 24px; box-shadow: 0 8px 32px rgba(249,115,22,0.4); }
+    .about-badge-blue { position: absolute; top: -16px; left: -16px; background: var(--card-bg); border: 2px solid var(--blue); border-radius: 16px; padding: 12px 18px; box-shadow: 0 4px 20px rgba(0,0,0,0.12); }
+    .feature-item { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px; }
+    .feature-icon { width: 42px; height: 42px; border-radius: 12px; background: rgba(26,86,219,0.1); display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+
+    /* CARDS */
+    .card { background: var(--card-bg); border: 1.5px solid var(--border); border-radius: 18px; transition: all 0.3s; }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 12px 36px rgba(0,0,0,0.1); }
+
+    /* ROOMS */
+    .rooms-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 28px; }
+    .room-card { background: var(--card-bg); border-radius: 20px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.08); transition: transform 0.3s, box-shadow 0.3s; }
+    .room-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(0,0,0,0.15); }
+    .room-img-wrap { position: relative; height: 220px; }
+    .room-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+    .room-img-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.6) 100%); }
+    .room-title-overlay { position: absolute; bottom: 14px; left: 16px; color: #fff; font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; }
+    .popular-badge { position: absolute; top: 14px; right: 14px; z-index: 3; background: var(--orange); color: #fff; border-radius: 20px; padding: 4px 14px; font-size: 12px; font-weight: 700; }
+    .room-body { padding: 20px 22px; }
+    .room-price { font-size: 26px; font-weight: 900; font-family: 'Playfair Display', serif; }
+    .room-per { color: var(--text-muted); font-size: 13px; }
+    .avail-badge { border-radius: 20px; padding: 4px 14px; font-size: 12px; font-weight: 700; }
+    .room-features { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 18px; }
+    .feat-pill { background: var(--gray-100); color: var(--text-muted); border-radius: 20px; padding: 4px 12px; font-size: 12px; font-weight: 600; }
+    [data-dark="true"] .feat-pill { background: #1E293B; }
+
+    /* AMENITIES */
+    .amenities-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+    .amenity-card { background: var(--card-bg); border: 1.5px solid var(--border); border-radius: 18px; padding: 28px 22px; text-align: center; transition: all 0.3s; cursor: default; }
+    .amenity-card:hover { border-color: var(--blue); transform: translateY(-4px); box-shadow: 0 8px 28px rgba(26,86,219,0.1); }
+    .amenity-icon { font-size: 38px; margin-bottom: 12px; }
+
+    /* PRICING */
+    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 24px; align-items: start; }
+    .price-card { border-radius: 22px; padding: 34px 28px; position: relative; }
+    .price-card.regular { background: var(--card-bg); border: 1.5px solid var(--border); box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+    .price-card.popular { background: linear-gradient(135deg, var(--blue), #1D4ED8); box-shadow: 0 20px 60px rgba(26,86,219,0.3); transform: scale(1.04); }
+    .pop-label { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: var(--orange); color: #fff; border-radius: 20px; padding: 5px 20px; font-size: 12px; font-weight: 700; white-space: nowrap; }
+    .price-num { font-size: 38px; font-weight: 900; font-family: 'Playfair Display', serif; }
+    .price-feature { display: flex; align-items: center; gap: 10px; padding: 7px 0; font-size: 14px; }
+    .check { font-weight: 700; }
+
+    /* LOCATION */
+    .location-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: start; }
+    .map-card { background: var(--card-bg); border-radius: 20px; overflow: hidden; border: 1.5px solid var(--border); }
+    .nearby-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .nearby-card { background: var(--card-bg); border: 1.5px solid var(--border); border-radius: 14px; padding: 16px 18px; transition: all 0.2s; }
+    .nearby-card:hover { border-color: var(--blue); box-shadow: 0 4px 16px rgba(26,86,219,0.1); }
+
+    /* CONTACT */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+    .contact-item { display: flex; align-items: center; gap: 16px; padding: 18px 22px; background: var(--card-bg); border: 1.5px solid var(--border); border-radius: 14px; margin-bottom: 14px; cursor: pointer; }
+    .contact-icon-wrap { width: 48px; height: 48px; border-radius: 14px; background: rgba(26,86,219,0.1); display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
+    .contact-form-wrap { background: var(--card-bg); border: 1.5px solid var(--border); border-radius: 20px; padding: 34px 30px; }
+    .form-input { width: 100%; margin-bottom: 14px; padding: 12px 16px; border-radius: 10px; border: 1.5px solid var(--border); background: var(--gray-50); color: var(--text); font-size: 14px; outline: none; }
+    [data-dark="true"] .form-input { background: #1E293B; }
+    .form-textarea { width: 100%; margin-bottom: 18px; padding: 12px 16px; border-radius: 10px; border: 1.5px solid var(--border); background: var(--gray-50); color: var(--text); font-size: 14px; outline: none; resize: vertical; }
+    [data-dark="true"] .form-textarea { background: #1E293B; }
+
+    /* FAQ */
+    .faq-item { background: var(--card-bg); border: 1.5px solid var(--border); border-radius: 14px; margin-bottom: 12px; overflow: hidden; transition: border-color 0.2s; }
+    .faq-item.open { border-color: var(--blue); }
+    .faq-q { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 18px 22px; cursor: pointer; }
+    .faq-plus { color: var(--blue); font-size: 20px; flex-shrink: 0; transition: transform 0.3s; }
+    .faq-plus.open { transform: rotate(45deg); }
+    .faq-a { padding: 0 22px 18px; color: var(--text-muted); font-size: 14px; line-height: 1.75; }
+
+    /* FOOTER */
+    footer { background: var(--navy); color: #fff; padding: 60px 5% 30px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 48px; }
+    .footer-link { color: rgba(255,255,255,0.6); font-size: 13px; margin-bottom: 10px; cursor: pointer; display: block; transition: color 0.2s; }
+    .footer-link:hover { color: var(--orange); }
+    .social-btn { width: 38px; height: 38px; border-radius: 10px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); font-size: 16px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; margin-right: 8px; }
+
+    /* WHATSAPP */
+    .wa-btn { position: fixed; bottom: 28px; right: 28px; z-index: 200; width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, #25D366, #128C7E); display: flex; align-items: center; justify-content: center; font-size: 28px; box-shadow: 0 6px 24px rgba(37,211,102,0.5); text-decoration: none; transition: transform 0.3s; animation: pulse 2.5s infinite; }
+    .wa-btn:hover { transform: scale(1.12); }
+
+    /* MODAL */
+    .modal-overlay { position: fixed; inset: 0; z-index: 300; display: flex; align-items: center; justify-content: center; padding: 20px; }
+    .modal-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); }
+    .modal-box { position: relative; background: var(--card-bg); border: 1.5px solid var(--border); border-radius: 22px; padding: 32px 30px; max-width: 460px; width: 100%; box-shadow: 0 24px 80px rgba(0,0,0,0.3); animation: fadeUp 0.35s ease; }
+    .modal-close { background: none; border: none; font-size: 22px; cursor: pointer; color: var(--text); }
+    .modal-select { width: 100%; margin-bottom: 16px; padding: 12px 14px; border-radius: 10px; border: 1.5px solid var(--border); background: var(--gray-50); color: var(--text); font-size: 14px; outline: none; }
+    [data-dark="true"] .modal-select { background: #1E293B; }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: none; } }
+    @keyframes pulse { 0%,100% { box-shadow: 0 6px 24px rgba(37,211,102,0.5); } 50% { box-shadow: 0 6px 40px rgba(37,211,102,0.8); } }
+    .fade-in { opacity: 0; transform: translateY(32px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-in.visible { opacity: 1; transform: none; }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .hamburger { display: block; }
+      .about-grid, .location-grid, .contact-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .price-card.popular { transform: none; }
+      .about-badge-orange { bottom: 10px; right: 10px; }
+      .about-badge-blue { top: 10px; left: 10px; }
+    }
+    @media (max-width: 600px) {
+      .footer-grid { grid-template-columns: 1fr; }
+      .nearby-grid { grid-template-columns: 1fr; }
+      .hero-h1 { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <div class="nav-logo">
+    <div class="nav-logo-icon">🏠</div>
+    <span class="nav-logo-text">Jaya Co Living</span>
+  </div>
+  <div class="nav-links">
+    <button class="nav-link" onclick="scrollToSection('home')">Home</button>
+    <button class="nav-link" onclick="scrollToSection('rooms')">Rooms</button>
+    <button class="nav-link" onclick="scrollToSection('amenities')">Amenities</button>
+    <button class="nav-link" onclick="scrollToSection('pricing')">Pricing</button>
+    <button class="nav-link" onclick="scrollToSection('contact')">Contact</button>
+    <button class="nav-enquire" onclick="openEnquiry()">Enquire Now</button>
+    <button class="nav-dark-btn" id="dark-toggle" onclick="toggleDark()">🌙</button>
+  </div>
+  <button class="hamburger" onclick="toggleMenu()">☰</button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu">
+  <button class="mobile-menu-link" onclick="scrollToSection('home')">Home</button>
+  <button class="mobile-menu-link" onclick="scrollToSection('about')">About</button>
+  <button class="mobile-menu-link" onclick="scrollToSection('rooms')">Rooms</button>
+  <button class="mobile-menu-link" onclick="scrollToSection('amenities')">Amenities</button>
+  <button class="mobile-menu-link" onclick="scrollToSection('pricing')">Pricing</button>
+  <button class="mobile-menu-link" onclick="scrollToSection('location')">Location</button>
+  <button class="mobile-menu-link" onclick="scrollToSection('contact')">Contact</button>
+  <button class="mobile-menu-link" onclick="scrollToSection('faq')">FAQ</button>
+  <button class="mobile-menu-link" onclick="toggleDark()">Toggle Dark Mode</button>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-slide active" style="background-image:url('https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=1400&q=80')"><div class="hero-overlay"></div></div>
+  <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1400&q=80')"><div class="hero-overlay"></div></div>
+  <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=1400&q=80')"><div class="hero-overlay"></div></div>
+
+  <div class="hero-content">
+    <span class="hero-badge">🏆 #1 Rated PG in Bangalore</span>
+    <h1 class="hero-h1">Find Your Perfect Stay<br /><span>Away From Home</span></h1>
+    <p class="hero-sub">Affordable, Safe & Comfortable PG Accommodation for Students & Working Professionals</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="openBook()">📅 Book Now</button>
+      <button class="btn-outline" onclick="scrollToSection('contact'); return false;">📞 Contact Us</button>
+    </div>
+    <div class="search-bar">
+      <span style="font-size:18px">🔍</span>
+      <input id="search-input" type="text" placeholder="Search rooms (single, double, AC...)" oninput="handleSearch(this.value)" />
+      <button class="search-btn" onclick="scrollToSection('rooms')">Search</button>
+    </div>
+    <div class="slide-dots" id="slide-dots">
+      <button class="dot active" onclick="goSlide(0)"></button>
+      <button class="dot" onclick="goSlide(1)"></button>
+      <button class="dot" onclick="goSlide(2)"></button>
+    </div>
+  </div>
+
+  <div class="stats-bar">
+    <div><div class="stat-num">500+</div><div class="stat-label">Happy Residents</div></div>
+    <div><div class="stat-num">4.9★</div><div class="stat-label">Average Rating</div></div>
+    <div><div class="stat-num">2+</div><div class="stat-label">Years Experience</div></div>
+    <div><div class="stat-num">24/7</div><div class="stat-label">Support</div></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-img-wrap fade-in">
+        <img class="about-img" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80" alt="Jaya Co Living property" />
+        <div class="about-badge-orange">
+          <div style="color:#fff;font-size:28px;font-weight:900;font-family:'Playfair Display',serif">500+</div>
+          <div style="color:rgba(255,255,255,0.9);font-size:13px;font-weight:600">Happy Residents</div>
+        </div>
+        <div class="about-badge-blue">
+          <div style="color:var(--blue);font-size:22px;font-weight:900">4.9 ⭐</div>
+          <div style="color:var(--text-muted);font-size:12px">Google Rating</div>
+        </div>
+      </div>
+      <div class="fade-in">
+        <div class="section-label">About Jaya Co Living</div>
+        <h2 class="section-title">Your Home Away From <span>Home</span></h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:20px;font-size:15px">Jaya Co Living was founded with a simple mission: to provide a safe, comfortable, and affordable living space for students and working professionals. With over 2 years of excellence, we've become Bangalore's most trusted PG accommodation.</p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:28px;font-size:15px">We believe that where you live shapes who you become. That's why we go beyond just providing a roof — we foster a community of growth, safety, and warmth.</p>
+        <div class="feature-item">
+          <div class="feature-icon">🛡️</div>
+          <div><div style="font-weight:700;font-size:15px;margin-bottom:2px">Safety First</div><div style="color:var(--text-muted);font-size:13px">24/7 CCTV & security personnel on premises</div></div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🏡</div>
+          <div><div style="font-weight:700;font-size:15px;margin-bottom:2px">Home Comfort</div><div style="color:var(--text-muted);font-size:13px">Fully furnished rooms with all amenities included</div></div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">💰</div>
+          <div><div style="font-weight:700;font-size:15px;margin-bottom:2px">Best Value</div><div style="color:var(--text-muted);font-size:13px">Transparent pricing with no hidden charges ever</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROOMS -->
+<section id="rooms" class="alt-bg">
+  <div class="section-inner">
+    <div class="section-header fade-in">
+      <div class="section-label">Room Gallery</div>
+      <h2 class="section-title">Choose Your <span>Perfect Room</span></h2>
+      <p class="section-desc">Spacious, well-ventilated rooms designed for comfort and productivity</p>
+    </div>
+    <div class="rooms-grid" id="rooms-grid"></div>
+  </div>
+</section>
+
+<!-- AMENITIES -->
+<section id="amenities">
+  <div class="section-inner">
+    <div class="section-header fade-in">
+      <div class="section-label">World-Class Amenities</div>
+      <h2 class="section-title">Everything You <span>Need</span></h2>
+    </div>
+    <div class="amenities-grid">
+      <div class="amenity-card fade-in"><div class="amenity-icon">📶</div><div style="font-weight:800;font-size:15px;margin-bottom:6px">Free Wi-Fi</div><div style="color:var(--text-muted);font-size:13px">High-speed internet 24/7</div></div>
+      <div class="amenity-card fade-in" style="transition-delay:0.08s"><div class="amenity-icon">📺</div><div style="font-weight:800;font-size:15px;margin-bottom:6px">TV Entertainment</div><div style="color:var(--text-muted);font-size:13px">Enjoy your favorite shows</div></div>
+      <div class="amenity-card fade-in" style="transition-delay:0.16s"><div class="amenity-icon">🧹</div><div style="font-weight:800;font-size:15px;margin-bottom:6px">Housekeeping</div><div style="color:var(--text-muted);font-size:13px">Cleaning service</div></div>
+      <div class="amenity-card fade-in" style="transition-delay:0.24s"><div class="amenity-icon">📷</div><div style="font-weight:800;font-size:15px;margin-bottom:6px">CCTV Security</div><div style="color:var(--text-muted);font-size:13px">24/7 surveillance</div></div>
+      <div class="amenity-card fade-in" style="transition-delay:0.32s"><div class="amenity-icon">⚡</div><div style="font-weight:800;font-size:15px;margin-bottom:6px">Power Backup</div><div style="color:var(--text-muted);font-size:13px">Uninterrupted electricity</div></div>
+      <div class="amenity-card fade-in" style="transition-delay:0.4s"><div class="amenity-icon">🧺</div><div style="font-weight:800;font-size:15px;margin-bottom:6px">Washing Machine</div><div style="color:var(--text-muted);font-size:13px">Convenient self-service laundry</div></div>
+      <div class="amenity-card fade-in" style="transition-delay:0.48s"><div class="amenity-icon">🍽️</div><div style="font-weight:800;font-size:15px;margin-bottom:6px">Healthy Food</div><div style="color:var(--text-muted);font-size:13px">Home-cooked meals</div></div>
+      <div class="amenity-card fade-in" style="transition-delay:0.56s"><div class="amenity-icon">🚗</div><div style="font-weight:800;font-size:15px;margin-bottom:6px">Parking</div><div style="color:var(--text-muted);font-size:13px">Secure vehicle parking</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" class="alt-bg">
+  <div class="section-inner">
+    <div class="section-header fade-in">
+      <div class="section-label">Pricing Plans</div>
+      <h2 class="section-title">Simple, <span>Transparent</span> Pricing</h2>
+      <p class="section-desc">No hidden fees. Pick the plan that fits your lifestyle and budget.</p>
+    </div>
+    <div class="pricing-grid">
+      <!-- Basic -->
+      <div class="price-card regular fade-in">
+        <div style="color:var(--orange);font-weight:700;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px">Triple Sharing</div>
+        <div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:900;margin-bottom:4px">Basic</div>
+        <div style="margin-bottom:24px"><span class="price-num" style="color:var(--blue)">₹8,000</span><span class="price-per">/month</span></div>
+        <div style="margin-bottom:28px">
+          <div class="price-feature" style="border-bottom:1px solid var(--border)"><span class="check" style="color:var(--blue)">✓</span> Shared Room</div>
+          <div class="price-feature" style="border-bottom:1px solid var(--border)"><span class="check" style="color:var(--blue)">✓</span> Free Wi-Fi</div>
+          <div class="price-feature" style="border-bottom:1px solid var(--border)"><span class="check" style="color:var(--blue)">✓</span> CCTV Security</div>
+          <div class="price-feature" style="border-bottom:1px solid var(--border)"><span class="check" style="color:var(--blue)">✓</span> Power Backup</div>
+          <div class="price-feature"><span class="check" style="color:var(--blue)">✓</span> Common Washroom</div>
+        </div>
+        <button onclick="openBook()" style="width:100%;background:linear-gradient(135deg,var(--blue),var(--blue-light));border:none;color:#fff;padding:13px 0;border-radius:12px;font-weight:800;font-size:15px">Book Now →</button>
+      </div>
+      <!-- Standard (Popular) -->
+      <div class="price-card popular fade-in">
+        <div class="pop-label">⭐ Most Popular</div>
+        <div style="color:rgba(255,255,255,0.7);font-weight:700;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px">Double Sharing</div>
+        <div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:#fff;margin-bottom:4px">Standard</div>
+        <div style="margin-bottom:24px"><span class="price-num" style="color:#fff">₹11,000</span><span style="color:rgba(255,255,255,0.65);font-size:14px">/month</span></div>
+        <div style="margin-bottom:28px">
+          <div class="price-feature" style="border-bottom:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.9)"><span class="check" style="color:#FB923C">✓</span> Shared Room</div>
+          <div class="price-feature" style="border-bottom:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.9)"><span class="check" style="color:#FB923C">✓</span> Free Wi-Fi</div>
+          <div class="price-feature" style="border-bottom:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.9)"><span class="check" style="color:#FB923C">✓</span> CCTV Security</div>
+          <div class="price-feature" style="border-bottom:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.9)"><span class="check" style="color:#FB923C">✓</span> Power Backup</div>
+          <div class="price-feature" style="border-bottom:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.9)"><span class="check" style="color:#FB923C">✓</span> Attached Washroom</div>
+          <div class="price-feature" style="color:rgba(255,255,255,0.9)"><span class="check" style="color:#FB923C">✓</span> Housekeeping</div>
+        </div>
+        <button onclick="openBook()" style="width:100%;background:linear-gradient(135deg,#F97316,#FB923C);border:none;color:#fff;padding:13px 0;border-radius:12px;font-weight:800;font-size:15px;box-shadow:0 6px 20px rgba(249,115,22,0.4)">Book Now →</button>
+      </div>
+      <!-- Premium -->
+      <div class="price-card regular fade-in">
+        <div style="color:var(--orange);font-weight:700;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px">Single Sharing</div>
+        <div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:900;margin-bottom:4px">Premium</div>
+        <div style="margin-bottom:24px"><span class="price-num" style="color:var(--blue)">₹19,000</span><span class="price-per">/month</span></div>
+        <div style="margin-bottom:28px">
+          <div class="price-feature" style="border-bottom:1px solid var(--border)"><span class="check" style="color:var(--blue)">✓</span> Private AC Room</div>
+          <div class="price-feature" style="border-bottom:1px solid var(--border)"><span class="check" style="color:var(--blue)">✓</span> Free Wi-Fi</div>
+          <div class="price-feature" style="border-bottom:1px solid var(--border)"><span class="check" style="color:var(--blue)">✓</span> CCTV Security</div>
+          <div class="price-feature" style="border-bottom:1px solid var(--border)"><span class="check" style="color:var(--blue)">✓</span> Power Backup</div>
+          <div class="price-feature" style="border-bottom:1px solid var(--border)"><span class="check" style="color:var(--blue)">✓</span> Private Washroom</div>
+          <div class="price-feature"><span class="check" style="color:var(--blue)">✓</span> Housekeeping</div>
+        </div>
+        <button onclick="openBook()" style="width:100%;background:linear-gradient(135deg,var(--blue),var(--blue-light));border:none;color:#fff;padding:13px 0;border-radius:12px;font-weight:800;font-size:15px">Book Now →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section id="location" class="alt-bg">
+  <div class="section-inner">
+    <div class="section-header fade-in">
+      <div class="section-label">Our Location</div>
+      <h2 class="section-title">Perfectly <span>Located</span></h2>
+      <p class="section-desc">Near top colleges, IT hubs, hospitals & metro stations in Bangalore</p>
+    </div>
+    <div class="location-grid">
+      <div class="map-card fade-in">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.073875684262!2d77.72728101476074!3d12.969839986160168!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae11ecd30e86fb%3A0x9adf30a067ca4611!2sWhitefield%2C%20Bengaluru%2C%20Karnataka!5e0!3m2!1sen!2sin!4v1710000000000!5m2!1sen!2sin" width="100%" height="300" style="border:0;display:block" allowfullscreen loading="lazy" title="Jaya Co Living Location"></iframe>
+        <div style="padding:16px 20px">
+          <div style="font-weight:700;font-size:15px;margin-bottom:4px">📍 Jaya Co Living</div>
+          <div style="color:var(--text-muted);font-size:13px">Whitefield, Bangalore, Karnataka 560066</div>
+        </div>
+      </div>
+      <div class="nearby-grid fade-in">
+        <div class="nearby-card"><div style="font-size:11px;color:var(--text-muted);margin-bottom:4px">🎓 University</div><div style="font-weight:700;font-size:14px;margin-bottom:4px">Garden City University</div><div style="color:var(--blue);font-size:12px;font-weight:700">4 km away</div></div>
+        <div class="nearby-card"><div style="font-size:11px;color:var(--text-muted);margin-bottom:4px">💼 IT Hub</div><div style="font-weight:700;font-size:14px;margin-bottom:4px">ITPL</div><div style="color:var(--blue);font-size:12px;font-weight:700">2 km away</div></div>
+        <div class="nearby-card"><div style="font-size:11px;color:var(--text-muted);margin-bottom:4px">🏥 Hospital</div><div style="font-weight:700;font-size:14px;margin-bottom:4px">Columbia Asia Hospital</div><div style="color:var(--blue);font-size:12px;font-weight:700">2 km away</div></div>
+        <div class="nearby-card"><div style="font-size:11px;color:var(--text-muted);margin-bottom:4px">🚇 Metro Station</div><div style="font-weight:700;font-size:14px;margin-bottom:4px">Whitefield Metro</div><div style="color:var(--blue);font-size:12px;font-weight:700">1.2 km away</div></div>
+        <div class="nearby-card"><div style="font-size:11px;color:var(--text-muted);margin-bottom:4px">🛍️ Shopping</div><div style="font-weight:700;font-size:14px;margin-bottom:4px">Phoenix Marketcity</div><div style="color:var(--blue);font-size:12px;font-weight:700">3 km away</div></div>
+        <div class="nearby-card"><div style="font-size:11px;color:var(--text-muted);margin-bottom:4px">✈️ Airport</div><div style="font-weight:700;font-size:14px;margin-bottom:4px">Kempegowda Airport</div><div style="color:var(--blue);font-size:12px;font-weight:700">45 km away</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-header fade-in">
+      <div class="section-label">Contact Us</div>
+      <h2 class="section-title">Let's Get You <span>Settled</span></h2>
+    </div>
+    <div class="contact-grid">
+      <div class="fade-in">
+        <div class="contact-item" onclick="window.open('tel:+919700053541')">
+          <div class="contact-icon-wrap">📞</div>
+          <div><div style="color:var(--text-muted);font-size:12px;font-weight:600;margin-bottom:2px">Call Us</div><div style="font-weight:700;font-size:15px;color:var(--blue)">+91 97000 53541</div></div>
+        </div>
+        <div class="contact-item" onclick="window.open('mailto:msrdy@7gmail.com')">
+          <div class="contact-icon-wrap">📧</div>
+          <div><div style="color:var(--text-muted);font-size:12px;font-weight:600;margin-bottom:2px">Email Us</div><div style="font-weight:700;font-size:15px;color:var(--blue)">msrdy@7gmail.com</div></div>
+        </div>
+        <div class="contact-item" onclick="window.open('https://wa.me/919700053541','_blank')">
+          <div class="contact-icon-wrap">💬</div>
+          <div><div style="color:var(--text-muted);font-size:12px;font-weight:600;margin-bottom:2px">WhatsApp</div><div style="font-weight:700;font-size:15px;color:var(--blue)">+91 97000 53541</div></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon-wrap">📍</div>
+          <div><div style="color:var(--text-muted);font-size:12px;font-weight:600;margin-bottom:2px">Visit Us</div><div style="font-weight:700;font-size:15px">Whitefield, Bangalore</div></div>
+        </div>
+      </div>
+      <div class="contact-form-wrap fade-in" id="contact-form">
+        <h3 style="font-family:'Playfair Display',serif;font-size:20px;margin-bottom:24px">Send a Message</h3>
+        <input class="form-input" type="text" id="cf-name" placeholder="Your Name" />
+        <input class="form-input" type="email" id="cf-email" placeholder="Email Address" />
+        <input class="form-input" type="tel" id="cf-phone" placeholder="Phone Number" />
+        <textarea class="form-textarea" id="cf-message" placeholder="Your message..." rows="4"></textarea>
+        <button onclick="submitContact(); return false;" style="width:100%;background:linear-gradient(135deg,var(--blue),var(--blue-light));border:none;color:#fff;padding:14px 0;border-radius:12px;font-weight:800;font-size:15px;cursor:pointer">Send Message 🚀</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="alt-bg">
+  <div class="section-inner" style="max-width:800px">
+    <div class="section-header fade-in">
+      <div class="section-label">FAQ</div>
+      <h2 class="section-title">Frequently Asked <span>Questions</span></h2>
+    </div>
+    <div id="faq-list"></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div style="max-width:1100px;margin:0 auto">
+    <div class="footer-grid">
+      <div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px">
+          <div class="nav-logo-icon">🏠</div>
+          <span style="font-size:20px;font-weight:900;font-family:'Playfair Display',serif;color:#fff">Jaya Co Living</span>
+        </div>
+        <p style="color:rgba(255,255,255,0.6);font-size:14px;line-height:1.8;margin-bottom:20px">Your trusted PG accommodation partner in Bangalore. Safe, comfortable, and affordable living for students and professionals.</p>
+        <div>
+          <button class="social-btn">📘</button>
+          <button class="social-btn">📸</button>
+          <button class="social-btn">🐦</button>
+          <button class="social-btn">▶️</button>
+        </div>
+      </div>
+      <div>
+        <div style="font-weight:800;font-size:15px;margin-bottom:18px;color:#fff">Quick Links</div>
+        <a class="footer-link" onclick="scrollToSection('home')">Home</a>
+        <a class="footer-link" onclick="scrollToSection('about')">About Us</a>
+        <a class="footer-link" onclick="scrollToSection('rooms')">Rooms</a>
+        <a class="footer-link" onclick="scrollToSection('amenities')">Amenities</a>
+        <a class="footer-link" onclick="scrollTo('pricing')">Pricing</a>
+        <a class="footer-link" onclick="scrollTo('contact')">Contact</a>
+      </div>
+      <div>
+        <div style="font-weight:800;font-size:15px;margin-bottom:18px;color:#fff">Services</div>
+        <span class="footer-link">Single Room</span>
+        <span class="footer-link">Double Room</span>
+        <span class="footer-link">Triple Room</span>
+        <span class="footer-link">Food Service</span>
+        <span class="footer-link">Washing Machine</span>
+      </div>
+      <div>
+        <div style="font-weight:800;font-size:15px;margin-bottom:18px;color:#fff">Contact</div>
+        <span class="footer-link">📞 +91 97000 53541</span>
+        <span class="footer-link">📧 msrdy@7gmail.com</span>
+        <span class="footer-link">📍 Whitefield, Bangalore</span>
+        <span class="footer-link">⏰ 9AM - 9PM (Support)</span>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,0.1);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+      <div style="color:rgba(255,255,255,0.5);font-size:13px">© 2025 Jaya Co Living. All rights reserved. Made with ❤️ in Bangalore</div>
+      <div style="display:flex;gap:20px">
+        <span style="color:rgba(255,255,255,0.5);font-size:13px;cursor:pointer">Privacy Policy</span>
+        <span style="color:rgba(255,255,255,0.5);font-size:13px;cursor:pointer">Terms of Service</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- WHATSAPP BUTTON -->
+<a href="https://wa.me/919700053541" target="_blank" rel="noopener noreferrer" class="wa-btn">💬</a>
+
+<!-- ENQUIRY MODAL -->
+<div class="modal-overlay" id="enquiry-modal" style="display:none">
+  <div class="modal-backdrop" onclick="closeEnquiry()"></div>
+  <div class="modal-box">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+      <h3 style="font-family:'Playfair Display',serif;font-size:22px;color:var(--text)">Quick Enquiry</h3>
+      <button class="modal-close" onclick="closeEnquiry()">✕</button>
+    </div>
+    <p style="color:var(--text-muted);margin-bottom:20px;font-size:14px">Tell us what you're looking for and we'll get back to you within the hour!</p>
+    <input class="form-input" type="text" placeholder="Full Name" style="margin-bottom:12px" />
+    <input class="form-input" type="email" placeholder="Email Address" style="margin-bottom:12px" />
+    <input class="form-input" type="tel" placeholder="Phone Number" style="margin-bottom:12px" />
+    <input class="form-input" type="text" placeholder="Preferred Room Type" style="margin-bottom:16px" />
+    <button onclick="closeEnquiry()" style="width:100%;background:linear-gradient(135deg,#F97316,#FB923C);border:none;color:#fff;padding:13px 0;border-radius:12px;font-weight:800;font-size:15px">Submit Enquiry 🚀</button>
+  </div>
+</div>
+
+<!-- BOOK MODAL -->
+<div class="modal-overlay" id="book-modal" style="display:none">
+  <div class="modal-backdrop" onclick="closeBook()"></div>
+  <div class="modal-box">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+      <h3 style="font-family:'Playfair Display',serif;font-size:22px;color:var(--text)">Book a Visit</h3>
+      <button class="modal-close" onclick="closeBook()">✕</button>
+    </div>
+    <div id="book-form-content">
+      <div id="book-form-fields">
+        <p style="color:var(--text-muted);margin-bottom:20px;font-size:14px">Schedule a free property visit at your convenience!</p>
+        <input class="form-input" id="book-name" type="text" placeholder="Full Name" style="margin-bottom:12px" />
+        <input class="form-input" id="book-phone" type="tel" placeholder="Phone Number" style="margin-bottom:12px" />
+        <input class="form-input" id="book-date" type="date" style="margin-bottom:12px" />
+        <input class="form-input" id="book-time" type="time" style="margin-bottom:12px" />
+        <select class="modal-select" id="book-room">
+          <option value="">Select Room Type</option>
+          <option>Single Sharing – ₹19,000/mo</option>
+          <option>Double Sharing – ₹11,000/mo</option>
+          <option>Triple Sharing – ₹8,000/mo</option>
+        </select>
+        <button onclick="confirmBook()" style="width:100%;margin-top:16px;background:linear-gradient(135deg,var(--blue),var(--blue-light));border:none;color:#fff;padding:13px 0;border-radius:12px;font-weight:800;font-size:15px">📅 Confirm Visit</button>
+      </div>
+      <div id="book-form-success" style="display:none;text-align:center;padding:20px 0">
+        <div style="font-size:50px;margin-bottom:12px">🎉</div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:20px;margin-bottom:10px;color:var(--text)">Visit Booked!</h3>
+        <p id="book-success-text" style="color:var(--text-muted);font-size:14px"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const CONTACT_WHATSAPP = "919700053541";
+  const CONTACT_PHONE_DISPLAY = "+91 97000 53541";
+  // Optional: Web3Forms access key from https://web3forms.com (free, instant)
+  const WEB3FORMS_ACCESS_KEY = "";
+
+  const ROOMS = [
+    { type: "Single Sharing", price: 19000, accent: "#1A56DB", img: "single_sharing.png", features: ["Private Space", "Study Table with Chair", "2 Wardrobe", "TV"], popular: false },
+    { type: "Double Sharing", price: 11000, accent: "#F97316", img: "double_sharing.jpg", features: ["Shared Room", "Study Table with Chair", "2 Wardrobes", "TV"], popular: true },
+    { type: "Triple Sharing", price: 8000, accent: "#16A34A", img: "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=600&q=80", features: ["Shared Room", "Study Table with Chair", "3 wardrobe", "TV"], popular: false },
+  ];
+
+  const FAQS = [
+    { q: "What documents are required for admission?", a: "You need a valid government ID (Aadhaar/Passport), recent photograph, address proof, and an emergency contact number. Students should also carry their college ID." },
+    { q: "Is food included in the rent?", a: "Food is optional and can be added as an add-on for ₹2,500/month. We provide nutritious home-cooked breakfast, lunch, and dinner. Vegetarian and non-vegetarian options available." },
+    { q: "What are the visiting hours?", a: "Guests can visit between 9 AM to 8 PM. For security reasons, overnight guests are not permitted. Residents can return until 11 PM on weekdays and midnight on weekends." },
+    { q: "Is there a security deposit?", a: "Yes, a refundable security deposit of 2 months' rent is required at the time of admission. It is fully refunded within 15 days of vacating, subject to no damage." },
+    { q: "How is the internet speed?", a: "We offer 100 Mbps fiber-optic broadband shared across the property. Each resident gets dedicated bandwidth ensuring smooth streaming and work-from-home capability." },
+    { q: "Can I book a room before visiting?", a: "Yes! You can book a room online by paying a token advance of ₹1,000. This holds your room for up to 7 days. We also offer free virtual tours via video call." },
+  ];
+
+  let dark = false;
+  let currentSlide = 0;
+  let searchQuery = "";
+
+  function renderRooms() {
+    const grid = document.getElementById("rooms-grid");
+    const filtered = searchQuery
+      ? ROOMS.filter(r => r.type.toLowerCase().includes(searchQuery) || r.features.some(f => f.toLowerCase().includes(searchQuery)))
+      : ROOMS;
+    const rooms = filtered.length > 0 ? filtered : ROOMS;
+    grid.innerHTML = rooms.map(r => `
+      <div class="room-card" style="border:1.5px solid ${r.popular ? "#F97316" : "var(--border)"}">
+        <div class="room-img-wrap">
+          <img src="${r.img}" alt="${r.type}" loading="lazy" />
+          <div class="room-img-overlay"></div>
+          <div class="room-title-overlay">${r.type}</div>
+          ${r.popular ? '<div class="popular-badge">⭐ Most Popular</div>' : ""}
+        </div>
+        <div class="room-body">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+            <div><span class="room-price" style="color:${r.accent}">₹${r.price.toLocaleString()}</span><span class="room-per"> /month</span></div>
+            <div class="avail-badge" style="background:${r.accent}18;color:${r.accent}">Available</div>
+          </div>
+          <div class="room-features">${r.features.map(f => `<span class="feat-pill">✓ ${f}</span>`).join("")}</div>
+          <button onclick="openBook()" style="width:100%;background:${r.popular ? "linear-gradient(135deg,#F97316,#FB923C)" : r.accent + "15"};border:1.5px solid ${r.accent};color:${r.popular ? "#fff" : r.accent};padding:11px 0;border-radius:12px;font-weight:700;font-size:14px">Book This Room →</button>
+        </div>
+      </div>
+    `).join("");
+  }
+
+  function renderFAQs() {
+    document.getElementById("faq-list").innerHTML = FAQS.map((f, i) => `
+      <div class="faq-item" id="faq-${i}">
+        <div class="faq-q" onclick="toggleFAQ(${i})">
+          <span style="font-weight:700;font-size:15px">${f.q}</span>
+          <span class="faq-plus" id="faq-plus-${i}">+</span>
+        </div>
+        <div class="faq-a" id="faq-a-${i}" style="display:none">${f.a}</div>
+      </div>
+    `).join("");
+  }
+
+  function toggleFAQ(i) {
+    const item = document.getElementById(`faq-${i}`);
+    const ans = document.getElementById(`faq-a-${i}`);
+    const plus = document.getElementById(`faq-plus-${i}`);
+    const isOpen = ans.style.display !== "none";
+    ans.style.display = isOpen ? "none" : "block";
+    item.classList.toggle("open", !isOpen);
+    plus.classList.toggle("open", !isOpen);
+  }
+
+  function toggleDark() {
+    dark = !dark;
+    document.body.dataset.dark = dark;
+    document.getElementById("dark-toggle").textContent = dark ? "☀️" : "🌙";
+  }
+
+  function toggleMenu() {
+    document.getElementById("mobile-menu").classList.toggle("open");
+  }
+
+  function scrollToSection(id) {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+      if (document.getElementById("mobile-menu")) {
+        document.getElementById("mobile-menu").classList.remove("open");
+      }
+    } else {
+      console.warn(`Element with ID '${id}' not found`);
+    }
+  }
+
+  function handleSearch(val) {
+    searchQuery = val.toLowerCase();
+    renderRooms();
+  }
+
+  let slideTimer;
+  function goSlide(n) {
+    clearInterval(slideTimer);
+    const slides = document.querySelectorAll(".hero-slide");
+    const dots = document.querySelectorAll(".dot");
+    slides[currentSlide].classList.remove("active");
+    dots[currentSlide].classList.remove("active");
+    currentSlide = n;
+    slides[currentSlide].classList.add("active");
+    dots[currentSlide].classList.add("active");
+    startSlider();
+  }
+
+  function startSlider() {
+    slideTimer = setInterval(() => {
+      goSlide((currentSlide + 1) % 3);
+    }, 4000);
+  }
+
+  function openEnquiry() { document.getElementById("enquiry-modal").style.display = "flex"; }
+  function closeEnquiry() { document.getElementById("enquiry-modal").style.display = "none"; }
+  function resetBookForm() {
+    const fields = document.getElementById("book-form-fields");
+    const success = document.getElementById("book-form-success");
+    if (!fields || !success) return;
+    document.getElementById("book-name").value = "";
+    document.getElementById("book-phone").value = "";
+    document.getElementById("book-date").value = "";
+    document.getElementById("book-time").value = "";
+    document.getElementById("book-room").value = "";
+    fields.style.display = "block";
+    success.style.display = "none";
+  }
+
+  function openBook() {
+    resetBookForm();
+    document.getElementById("book-modal").style.display = "flex";
+  }
+
+  function closeBook() {
+    document.getElementById("book-modal").style.display = "none";
+    resetBookForm();
+  }
+
+  function buildBookingMessage(name, phone, visitDate, roomType) {
+    return [
+      "🏠 *New Visit Booking – Jaya Co Living*",
+      "",
+      "*Name:* " + name,
+      "*Phone:* " + phone,
+      "*Visit:* " + visitDate,
+      "*Room Type:* " + roomType,
+    ].join("\n");
+  }
+
+  function openBookingWhatsApp(message) {
+    const url = "https://wa.me/" + CONTACT_WHATSAPP + "?text=" + encodeURIComponent(message);
+    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    if (isMobile) window.location.href = url;
+    else window.open(url, "_blank", "noopener,noreferrer");
+  }
+
+  async function sendBookingEmail(name, phone, visitDate, roomType, message) {
+    const key = (WEB3FORMS_ACCESS_KEY || "").trim();
+    if (!key) return false;
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: key,
+          subject: "New Visit Booking – Jaya Co Living",
+          from_name: name,
+          phone: phone,
+          visit_date: visitDate,
+          room_type: roomType,
+          message: message,
+        }),
+      });
+      const data = await res.json();
+      return data.success === true;
+    } catch {
+      return false;
+    }
+  }
+
+  async function confirmBook() {
+    const name = document.getElementById("book-name").value.trim();
+    const phone = document.getElementById("book-phone").value.trim();
+    const date = document.getElementById("book-date").value;
+    const time = document.getElementById("book-time").value;
+    const roomType = document.getElementById("book-room").value;
+    const btn = document.querySelector("#book-form-fields button");
+
+    if (!name) {
+      alert("Please enter your full name.");
+      return;
+    }
+    if (!phone || phone.replace(/\D/g, "").length < 10) {
+      alert("Please enter a valid phone number.");
+      return;
+    }
+    if (!date) {
+      alert("Please select your preferred visit date.");
+      return;
+    }
+    if (!time) {
+      alert("Please select your preferred visit time.");
+      return;
+    }
+    if (!roomType) {
+      alert("Please select a room type.");
+      return;
+    }
+
+    const visitDate = new Date(date + "T" + time).toLocaleString("en-IN", {
+      dateStyle: "medium",
+      timeStyle: "short",
+    });
+
+    const message = buildBookingMessage(name, phone, visitDate, roomType);
+
+    if (btn) {
+      btn.disabled = true;
+      btn.textContent = "Sending…";
+    }
+
+    const emailSent = await sendBookingEmail(name, phone, visitDate, roomType, message);
+    openBookingWhatsApp(message);
+
+    if (btn) {
+      btn.disabled = false;
+      btn.textContent = "📅 Confirm Visit";
+    }
+
+    document.getElementById("book-success-text").innerHTML =
+      "WhatsApp opened with your booking details.<br><br>" +
+      "Please tap <strong>Send</strong> in WhatsApp so we receive it on <strong>" + CONTACT_PHONE_DISPLAY + "</strong>." +
+      (emailSent ? "<br><br>We also sent a copy to your email inbox." : "");
+
+    document.getElementById("book-form-fields").style.display = "none";
+    document.getElementById("book-form-success").style.display = "block";
+  }
+
+  function submitContact() {
+    const name = document.getElementById("cf-name")?.value || "";
+    const email = document.getElementById("cf-email")?.value || "";
+    const phone = document.getElementById("cf-phone")?.value || "";
+    const message = document.getElementById("cf-message")?.value || "";
+    
+    if (!name.trim()) {
+      alert("Please enter your name.");
+      return false;
+    }
+    if (!email.trim()) {
+      alert("Please enter your email.");
+      return false;
+    }
+    if (!email.includes("@")) {
+      alert("Please enter a valid email address.");
+      return false;
+    }
+    
+    // Log the message (in production, this would send to a server)
+    console.log("Contact form submitted:", { name, email, phone, message });
+    
+    // Show success message
+    const contactForm = document.getElementById("contact-form");
+    if (contactForm) {
+      contactForm.innerHTML = `
+        <div style="text-align:center;padding:40px 0">
+          <div style="font-size:56px;margin-bottom:16px">✅</div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:22px;margin-bottom:10px;color:var(--text)">Message Received!</h3>
+          <p style="color:var(--text-muted);margin-bottom:20px">We'll get back to you within 24 hours.</p>
+          <button onclick="location.reload()" style="background:var(--blue);border:none;color:#fff;padding:10px 20px;border-radius:8px;font-weight:700;cursor:pointer">Send Another Message</button>
+        </div>
+      `;
+    }
+    return false;
+  }
+
+  // Intersection Observer for animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible"); });
+  }, { threshold: 0.1 });
+  
+  function initAnimations() {
+    document.querySelectorAll(".fade-in").forEach(el => observer.observe(el));
+  }
+
+  // Scroll nav
+  window.addEventListener("scroll", () => {
+    const nav = document.getElementById("main-nav");
+    if (window.scrollY > 60) nav.classList.add("scrolled");
+    else nav.classList.remove("scrolled");
+  });
+
+  // Add event listeners to navigation buttons for better reliability
+  document.addEventListener("DOMContentLoaded", () => {
+    // Setup nav link event listeners
+    document.querySelectorAll(".nav-link").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        const id = btn.textContent.toLowerCase().replace(/[^a-z]/g, '').trim();
+        const sectionId = {
+          'home': 'home',
+          'rooms': 'rooms',
+          'amenities': 'amenities',
+          'pricing': 'pricing',
+          'contact': 'contact'
+        }[id] || id;
+        scrollToSection(sectionId);
+      });
+    });
+
+    // Setup mobile menu link event listeners
+    document.querySelectorAll(".mobile-menu-link").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        const label = btn.textContent.toLowerCase().trim();
+        const sectionMap = {
+          'home': 'home',
+          'about': 'about',
+          'about us': 'about',
+          'rooms': 'rooms',
+          'amenities': 'amenities',
+          'pricing': 'pricing',
+          'location': 'location',
+          'contact': 'contact',
+          'faq': 'faq'
+        };
+        const id = sectionMap[label] || label;
+        scrollToSection(id);
+      });
+    });
+
+    // Setup footer links
+    document.querySelectorAll(".footer-link").forEach(link => {
+      if (link.hasAttribute("onclick") && link.onclick) {
+        // Event listener will handle the click
+      }
+    });
+  });
+
+  // Init
+  document.addEventListener("DOMContentLoaded", () => {
+    renderRooms();
+    renderFAQs();
+    startSlider();
+    setTimeout(initAnimations, 100);
+  });
+
+</script>
+</body>
+</html>
