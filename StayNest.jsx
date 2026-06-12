@@ -1,6 +1,10 @@
 import { useState, useEffect, useRef } from "react";
 import singleSharingImg from "./single_sharing.png";
 import doubleSharingImg from "./double_sharing.jpg";
+import facadeImg from "./gallery_facade.jpg";
+import doubleSharingRoomImg from "./gallery_double.jpg";
+import singleSharingRoomImg from "./gallery_single.jpg";
+import diningImg from "./gallery_dining.jpg";
 
 const COLORS = {
   navy: "#0B1F3A",
@@ -41,12 +45,19 @@ const FadeIn = ({ children, delay = 0, direction = "up", className = "" }) => {
   );
 };
 
-const NAV_LINKS = ["Home", "About", "Rooms", "Amenities", "Pricing", "Location", "Contact", "FAQ"];
+const NAV_LINKS = ["Home", "About", "Rooms", "Gallery", "Amenities", "Pricing", "Location", "Contact", "FAQ"];
 
 const ROOMS = [
   { type: "Single Sharing", emoji: "🛏️", price: 19000, features: ["Private Space", "Study Table with Chair", "2 Wardrobe", "TV"], color: "#EFF6FF", accent: "#1A56DB", img: singleSharingImg },
   { type: "Double Sharing", emoji: "🛏️🛏️", price: 11000, features: ["Shared Room", "Study Table with Chair", "2 Wardrobes", "TV"], color: "#FFF7ED", accent: "#F97316", img: doubleSharingImg, popular: true },
   { type: "Triple Sharing", emoji: "🛏️🛏️🛏️", price: 8000, features: ["Shared Room", "Study Table with Chair", "3 wardrobe", "TV"], color: "#F0FDF4", accent: "#16A34A", img: "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=600&q=80" },
+];
+
+const GALLERY_IMAGES = [
+  { img: facadeImg, caption: "Building Exterior", desc: "Jaya Co-Living building facade with premium night illumination" },
+  { img: doubleSharingRoomImg, caption: "Double Sharing Room", desc: "Spacious double sharing room layout with individual wardrobes and study desks" },
+  { img: singleSharingRoomImg, caption: "Single Sharing Room", desc: "Comfortable single sharing room with premium bedding and modern amenities" },
+  { img: diningImg, caption: "Dining & Lounge Area", desc: "Spacious and hygienic dining hall and recreation area" },
 ];
 
 const AMENITIES = [
@@ -174,7 +185,7 @@ export default function StayNest() {
         </div>
 
         <div style={{ display: "flex", gap: 4, alignItems: "center" }} className="desktop-nav">
-          {["Home", "Rooms", "Amenities", "Pricing", "Contact"].map(l => (
+          {["Home", "Rooms", "Gallery", "Amenities", "Pricing", "Contact"].map(l => (
             <button key={l} onClick={() => scrollTo(l.toLowerCase())} style={{
               background: "none", border: "none", cursor: "pointer", color: scrolled ? text : "#fff",
               fontWeight: 600, fontSize: 14, padding: "6px 12px", borderRadius: 8,
@@ -224,7 +235,7 @@ export default function StayNest() {
           </div>
 
           <div style={{ display: "flex", gap: 14, flexWrap: "wrap", justifyContent: "center", marginBottom: 40 }}>
-            <button onClick={() => setBookOpen(true)} style={{ background: `linear-gradient(135deg, ${COLORS.blue}, ${COLORS.blueLight})`, border: "none", color: "#fff", padding: "14px 32px", borderRadius: 30, fontWeight: 800, fontSize: 15, cursor: "pointer", boxShadow: `0 8px 24px ${COLORS.blue}55` }}>
+            <button onClick={() => scrollTo("rooms")} style={{ background: `linear-gradient(135deg, ${COLORS.blue}, ${COLORS.blueLight})`, border: "none", color: "#fff", padding: "14px 32px", borderRadius: 30, fontWeight: 800, fontSize: 15, cursor: "pointer", boxShadow: `0 8px 24px ${COLORS.blue}55` }}>
               📅 Book Now
             </button>
             <button onClick={() => scrollTo("contact")} style={{ background: "rgba(255,255,255,0.12)", border: "2px solid rgba(255,255,255,0.5)", color: "#fff", padding: "14px 32px", borderRadius: 30, fontWeight: 700, fontSize: 15, cursor: "pointer", backdropFilter: "blur(8px)" }}>
@@ -348,6 +359,53 @@ export default function StayNest() {
         </div>
       </section>
 
+      {/* GALLERY */}
+      <section id="gallery" style={{ padding: "90px 5%", background: dark ? "#1E293B" : COLORS.white }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+          <FadeIn>
+            <div style={{ textAlign: "center", marginBottom: 54 }}>
+              <span style={{ color: COLORS.orange, fontWeight: 700, fontSize: 13, letterSpacing: 2, textTransform: "uppercase" }}>Photo Gallery</span>
+              <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)", margin: "12px 0 14px" }}>Experience <span style={{ color: COLORS.blue }}>Jaya Co-Living</span></h2>
+              <p style={{ color: mutedText, maxWidth: 500, margin: "0 auto", fontSize: 15 }}>A sneak peek into our luxury space, comfortable rooms, and clean dining areas</p>
+            </div>
+          </FadeIn>
+          
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: 24 }}>
+            {GALLERY_IMAGES.map((imgItem, i) => (
+              <FadeIn key={i} delay={i * 100}>
+                <div style={{
+                  background: cardBg,
+                  borderRadius: 16,
+                  overflow: "hidden",
+                  boxShadow: "0 4px 20px rgba(0,0,0,0.06)",
+                  border: `1.5px solid ${borderC}`,
+                  transition: "transform 0.3s, box-shadow 0.3s"
+                }}
+                onMouseEnter={e => {
+                  e.currentTarget.style.transform = "translateY(-6px)";
+                  e.currentTarget.style.boxShadow = "0 10px 30px rgba(0,0,0,0.15)";
+                }}
+                onMouseLeave={e => {
+                  e.currentTarget.style.transform = "none";
+                  e.currentTarget.style.boxShadow = "0 4px 20px rgba(0,0,0,0.06)";
+                }}>
+                  <div style={{ height: 240, overflow: "hidden", position: "relative" }}>
+                    <img src={imgItem.img} alt={imgItem.caption} style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.5s ease" }} 
+                      onMouseEnter={e => e.currentTarget.style.transform = "scale(1.08)"}
+                      onMouseLeave={e => e.currentTarget.style.transform = "scale(1)"}
+                    />
+                  </div>
+                  <div style={{ padding: "18px 20px" }}>
+                    <h4 style={{ fontWeight: 800, fontSize: 16, marginBottom: 6, color: text }}>{imgItem.caption}</h4>
+                    <p style={{ color: mutedText, fontSize: 13, lineHeight: 1.5 }}>{imgItem.desc}</p>
+                  </div>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* AMENITIES */}
       <section id="amenities" style={{ padding: "90px 5%" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
@@ -407,7 +465,7 @@ export default function StayNest() {
                       </div>
                     ))}
                   </div>
-                  <button onClick={() => setBookOpen(true)} style={{
+                  <button onClick={() => scrollTo("rooms")} style={{
                     width: "100%",
                     background: p.popular ? `linear-gradient(135deg, ${COLORS.orange}, ${COLORS.orangeLight})` : `linear-gradient(135deg, ${COLORS.blue}, ${COLORS.blueLight})`,
                     border: "none", color: "#fff", padding: "13px 0", borderRadius: 12, fontWeight: 800, fontSize: 15, cursor: "pointer",
